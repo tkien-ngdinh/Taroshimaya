@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Khóa ký app và cấu hình Firebase: không đưa lên repo (S01)
+*.jks
+*.keystore
+google-services.json
