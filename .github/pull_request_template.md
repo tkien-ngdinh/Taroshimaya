@@ -1,6 +1,6 @@
 ## Mã task
 
-<!-- Mã task trong Tracking Sheet, ví dụ: UY-01. Tên nhánh nên theo mẫu <loại>/<MÃ-TASK>-<mô-tả-ngắn>. -->
+<!-- Mã task trong Tracking Sheet, ví dụ: UY-01, KI-03. Tên nhánh theo mẫu <loại>/<MÃ-TASK>-<mô-tả-ngắn> (<loại> gồm: feature, fix, hotfix, refactor, design, data, test, docs, chore; ngoài ra có release/, spike/). -->
 - Mã task:
 - Link dòng task trong Sheet (nếu có):
 
