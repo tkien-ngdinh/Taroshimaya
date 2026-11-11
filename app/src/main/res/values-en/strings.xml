@@ -7,9 +7,6 @@
     <string name="v0_badge_version">v0 · KI-03</string>
     <string name="v0_banner_title">Taroshimaya App Skeleton v0</string>
     <string name="v0_banner_subtitle">Kotlin · Jetpack Compose · Material 3 · Bilingual VI &amp; EN</string>
-    <string name="v0_data_mode_label">Data source: %1$s</string>
-    <string name="data_mode_fake">Sample data (Fake · Phase 0–1)</string>
-    <string name="data_mode_firebase">Firebase (Real · Phase 2+)</string>
     <string name="v0_language_button_desc">Select app language</string>
 
     <!-- Bottom navigation (5 feature packages for TA-05) -->
@@ -25,7 +22,6 @@
     <string name="language_option_system">Follow device</string>
     <string name="language_option_vi">Tiếng Việt</string>
     <string name="language_option_en">English</string>
-    <string name="language_current_label">Language: %1$s</string>
     <string name="action_close">Close</string>
 
     <!-- Common placeholder & UI state labels (S06 & DI-06 starter) -->

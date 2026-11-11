@@ -24,12 +24,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
-import com.taroshimaya.app.core.data.AppLanguagePreference
-import com.taroshimaya.app.core.data.DataSourceMode
 
 /**
  * Clean reusable placeholder screen used by the 5 v0 feature packages.
  * All UI copy comes from string resources (C19) and styling relies on MaterialTheme tokens (DI-01).
+ * UI never branches on DataSourceMode or holds runtime data source state (DI-01).
  */
 @Composable
 fun ModulePlaceholderScreen(
@@ -38,20 +37,8 @@ fun ModulePlaceholderScreen(
     @StringRes ownerRes: Int,
     @StringRes featuresRes: Int,
     packageName: String,
-    dataSourceMode: DataSourceMode,
-    languagePreference: AppLanguagePreference,
     modifier: Modifier = Modifier,
 ) {
-    val dataModeText = when (dataSourceMode) {
-        DataSourceMode.FAKE -> stringResource(R.string.data_mode_fake)
-        DataSourceMode.FIREBASE -> stringResource(R.string.data_mode_firebase)
-    }
-    val languageText = when (languagePreference) {
-        AppLanguagePreference.SYSTEM -> stringResource(R.string.language_option_system)
-        AppLanguagePreference.VIETNAMESE -> stringResource(R.string.language_option_vi)
-        AppLanguagePreference.ENGLISH -> stringResource(R.string.language_option_en)
-    }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -73,16 +60,6 @@ fun ModulePlaceholderScreen(
                 Text(
                     text = stringResource(R.string.v0_banner_subtitle),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(
-                    text = stringResource(R.string.v0_data_mode_label, dataModeText),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.secondary,
-                )
-                Text(
-                    text = stringResource(R.string.language_current_label, languageText),
-                    style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }

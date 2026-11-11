@@ -7,9 +7,6 @@
     <string name="v0_badge_version">v0 · KI-03</string>
     <string name="v0_banner_title">Khung ứng dụng Taroshimaya v0</string>
     <string name="v0_banner_subtitle">Kotlin · Jetpack Compose · Material 3 · Song ngữ Việt &amp; Anh</string>
-    <string name="v0_data_mode_label">Nguồn dữ liệu: %1$s</string>
-    <string name="data_mode_fake">Dữ liệu mẫu (Fake · GĐ0–GĐ1)</string>
-    <string name="data_mode_firebase">Firebase (Real · GĐ2+)</string>
     <string name="v0_language_button_desc">Chọn ngôn ngữ ứng dụng</string>
 
     <!-- Bottom navigation (5 feature packages for TA-05) -->
@@ -25,7 +22,6 @@
     <string name="language_option_system">Theo thiết bị</string>
     <string name="language_option_vi">Tiếng Việt</string>
     <string name="language_option_en">English</string>
-    <string name="language_current_label">Ngôn ngữ: %1$s</string>
     <string name="action_close">Đóng</string>
 
     <!-- Common placeholder & UI state labels (S06 & DI-06 starter) -->

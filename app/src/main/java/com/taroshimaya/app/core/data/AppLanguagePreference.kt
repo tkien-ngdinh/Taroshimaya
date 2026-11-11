@@ -19,6 +19,10 @@ enum class AppLanguagePreference(val languageTag: String?) {
         const val DEFAULT_FALLBACK_TAG = "vi"
         val SUPPORTED_LANGUAGE_TAGS = setOf("vi", "en")
 
+        /**
+         * Maps an Android locale BCP-47 tag to an [AppLanguagePreference].
+         * Non-supported tags or empty/null resolve to [SYSTEM].
+         */
         fun fromLanguageTag(tag: String?): AppLanguagePreference {
             if (tag.isNullOrBlank()) return SYSTEM
             val primarySubtag = tag.substringBefore('-').substringBefore('_').lowercase(Locale.ROOT)
@@ -27,28 +31,6 @@ enum class AppLanguagePreference(val languageTag: String?) {
                 "en" -> ENGLISH
                 else -> SYSTEM
             }
-        }
-
-        /**
-         * Resolves effective locale tag (`"vi"` or `"en"`) given user preference and OS locale list.
-         *
-         * Rule (DI-01 / C19):
-         * - Explicit preference (`VIETNAMESE` / `ENGLISH`) wins.
-         * - When `SYSTEM`, first supported device language (`vi` or `en`) wins.
-         * - Any other device language defaults to Vietnamese (`"vi"`).
-         */
-        fun resolveEffectiveLocaleTag(
-            preference: AppLanguagePreference,
-            deviceLanguageTags: List<String>,
-        ): String {
-            preference.languageTag?.let { return it }
-            for (tag in deviceLanguageTags) {
-                val primary = tag.substringBefore('-').substringBefore('_').lowercase(Locale.ROOT)
-                if (primary in SUPPORTED_LANGUAGE_TAGS) {
-                    return primary
-                }
-            }
-            return DEFAULT_FALLBACK_TAG
         }
     }
 }

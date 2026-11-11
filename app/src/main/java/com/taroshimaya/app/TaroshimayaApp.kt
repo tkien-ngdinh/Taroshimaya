@@ -34,7 +34,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.taroshimaya.app.core.data.AppLanguagePreference
-import com.taroshimaya.app.core.data.DataSourceMode
 import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
 import com.taroshimaya.app.core.di.AppContainer
 import com.taroshimaya.app.core.navigation.AppNavHost
@@ -50,7 +49,6 @@ fun TaroshimayaApp(
 
     TaroshimayaTheme {
         TaroshimayaShell(
-            dataSourceMode = appContainer.dataSourceMode,
             languagePreference = languagePreference,
             onSelectLanguage = appContainer.languageManager::selectLanguage,
             modifier = modifier,
@@ -61,7 +59,6 @@ fun TaroshimayaApp(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaroshimayaShell(
-    dataSourceMode: DataSourceMode,
     languagePreference: AppLanguagePreference,
     onSelectLanguage: (AppLanguagePreference) -> Unit,
     modifier: Modifier = Modifier,
@@ -149,8 +146,6 @@ fun TaroshimayaShell(
     ) { innerPadding ->
         AppNavHost(
             navController = navController,
-            dataSourceMode = dataSourceMode,
-            languagePreference = languagePreference,
             modifier = Modifier.padding(innerPadding),
         )
     }
@@ -172,7 +167,6 @@ fun TaroshimayaShell(
 private fun TaroshimayaShellPreviewVi() {
     TaroshimayaTheme {
         TaroshimayaShell(
-            dataSourceMode = DataSourceMode.FAKE,
             languagePreference = AppLanguagePreference.SYSTEM,
             onSelectLanguage = {},
         )
@@ -184,7 +178,6 @@ private fun TaroshimayaShellPreviewVi() {
 private fun TaroshimayaShellPreviewEn() {
     TaroshimayaTheme {
         TaroshimayaShell(
-            dataSourceMode = DataSourceMode.FAKE,
             languagePreference = AppLanguagePreference.ENGLISH,
             onSelectLanguage = {},
         )

@@ -17,55 +17,7 @@ class AppLanguagePreferenceTest {
         assertEquals(AppLanguagePreference.ENGLISH, AppLanguagePreference.fromLanguageTag("en-US"))
         assertEquals(AppLanguagePreference.ENGLISH, AppLanguagePreference.fromLanguageTag("EN_GB"))
         assertEquals(AppLanguagePreference.SYSTEM, AppLanguagePreference.fromLanguageTag("fr-FR"))
-    }
-
-    @Test
-    fun resolveEffectiveLocaleTag_explicitPreferenceOverridesDeviceLocale() {
-        assertEquals(
-            "vi",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.VIETNAMESE,
-                deviceLanguageTags = listOf("en-US"),
-            ),
-        )
-        assertEquals(
-            "en",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.ENGLISH,
-                deviceLanguageTags = listOf("vi-VN"),
-            ),
-        )
-    }
-
-    @Test
-    fun resolveEffectiveLocaleTag_systemFollowsDeviceOrDefaultsToVietnamese() {
-        assertEquals(
-            "en",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.SYSTEM,
-                deviceLanguageTags = listOf("en-US"),
-            ),
-        )
-        assertEquals(
-            "vi",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.SYSTEM,
-                deviceLanguageTags = listOf("vi-VN"),
-            ),
-        )
-        assertEquals(
-            "vi",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.SYSTEM,
-                deviceLanguageTags = listOf("fr-FR", "ja-JP"),
-            ),
-        )
-        assertEquals(
-            "vi",
-            AppLanguagePreference.resolveEffectiveLocaleTag(
-                preference = AppLanguagePreference.SYSTEM,
-                deviceLanguageTags = emptyList(),
-            ),
-        )
+        assertEquals(AppLanguagePreference.SYSTEM, AppLanguagePreference.fromLanguageTag("ja-JP"))
+        assertEquals(AppLanguagePreference.SYSTEM, AppLanguagePreference.fromLanguageTag("de"))
     }
 }
