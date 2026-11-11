@@ -1,0 +1,172 @@
+package com.taroshimaya.app.core.ui
+
+import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.taroshimaya.app.R
+import com.taroshimaya.app.core.data.AppLanguagePreference
+import com.taroshimaya.app.core.data.DataSourceMode
+
+/**
+ * Clean reusable placeholder screen used by the 5 v0 feature packages.
+ * All UI copy comes from string resources (C19) and styling relies on MaterialTheme tokens (DI-01).
+ */
+@Composable
+fun ModulePlaceholderScreen(
+    @StringRes titleRes: Int,
+    @StringRes descriptionRes: Int,
+    @StringRes ownerRes: Int,
+    @StringRes featuresRes: Int,
+    packageName: String,
+    dataSourceMode: DataSourceMode,
+    languagePreference: AppLanguagePreference,
+    modifier: Modifier = Modifier,
+) {
+    val dataModeText = when (dataSourceMode) {
+        DataSourceMode.FAKE -> stringResource(R.string.data_mode_fake)
+        DataSourceMode.FIREBASE -> stringResource(R.string.data_mode_firebase)
+    }
+    val languageText = when (languagePreference) {
+        AppLanguagePreference.SYSTEM -> stringResource(R.string.language_option_system)
+        AppLanguagePreference.VIETNAMESE -> stringResource(R.string.language_option_vi)
+        AppLanguagePreference.ENGLISH -> stringResource(R.string.language_option_en)
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.v0_banner_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    text = stringResource(R.string.v0_banner_subtitle),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    text = stringResource(R.string.v0_data_mode_label, dataModeText),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.secondary,
+                )
+                Text(
+                    text = stringResource(R.string.language_current_label, languageText),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            ),
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    AssistChip(
+                        onClick = {},
+                        label = {
+                            Text(
+                                text = stringResource(R.string.placeholder_status_badge),
+                                style = MaterialTheme.typography.labelSmall,
+                            )
+                        },
+                    )
+                }
+                Text(
+                    text = stringResource(titleRes),
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = stringResource(descriptionRes),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = stringResource(
+                        R.string.placeholder_owner_label,
+                        stringResource(ownerRes),
+                    ),
+                    style = MaterialTheme.typography.labelLarge,
+                )
+                Text(
+                    text = stringResource(R.string.placeholder_package_label, packageName),
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Text(
+                    text = stringResource(
+                        R.string.placeholder_features_label,
+                        stringResource(featuresRes),
+                    ),
+                    style = MaterialTheme.typography.labelMedium,
+                )
+            }
+        }
+
+        OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.state_empty_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                Text(
+                    text = stringResource(R.string.state_empty_subtitle),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    text = stringResource(R.string.placeholder_next_step),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+
+        DisclaimerBanner()
+    }
+}
