@@ -13,28 +13,40 @@ Toàn bộ mã nguồn nằm trong `app/src/main/java/com/taroshimaya/app/`:
 com/taroshimaya/app/
 ├── MainActivity.kt
 ├── core/
-├── data/
-├── feature/
+│   ├── designsystem/
+│   ├── ui/
 │   ├── auth/
-│   ├── decks/
-│   └── cards/
-└── ui/
-    ├── theme/
-    ├── navigation/
-    └── components/
+│   ├── data/
+│   ├── di/
+│   └── navigation/
+└── features/
+    ├── auth_deck/
+    ├── session_ai/
+    ├── journal_insights/
+    ├── reader_community/
+    └── economy_shop/
 ```
+
+Bên trong mỗi gói `features/<gói>/` chia theo 3 lớp chuẩn `ui/`, `domain/`, `data/`; thư mục `viewmodel/` sẽ được bổ sung từ GĐ1. Không tự tạo thêm subpackage ngoài chuẩn này. Không import trực tiếp tầng `data/` của feature khác, luôn gọi qua interface D1–D11.
+
+Chuỗi giao diện: `app/src/main/res/values/strings.xml` (VI, mặc định) và `values-en/strings.xml` (EN).
 
 | Thư mục | Nội dung |
 |---|---|
 | `MainActivity.kt` | Điểm vào của app, chỉ dựng Compose và điều hướng gốc. |
-| `core/` | Tiện ích dùng chung: hằng số, extension, helper không phụ thuộc màn hình nào. |
-| `data/` | Tầng dữ liệu: model, repository, truy cập Firestore / Firebase Auth. |
-| `feature/` | Mỗi chức năng một thư mục con (`auth`, `decks`, `cards`…), chứa màn hình, ViewModel và logic riêng của chức năng đó. |
-| `ui/theme/` | Design tokens: màu, kiểu chữ, hình dạng, theme của app. |
-| `ui/navigation/` | Khai báo route và đồ thị điều hướng giữa các màn hình. |
-| `ui/components/` | Composable dùng chung cho nhiều màn hình (nút, thẻ bài, hộp thoại…). |
+| `core/designsystem/` | Design tokens và theme: màu, kiểu chữ, hình dạng (D10). |
+| `core/ui/` | Composable dùng chung cho nhiều màn hình (nút, thẻ bài, hộp thoại…), gồm câu miễn trừ S06. |
+| `core/auth/` | Interface đăng nhập dùng chung giữa các gói, gồm `UserSession` (D1). |
+| `core/data/` | Model lõi và `DataSourceMode` (FAKE / FIREBASE). |
+| `core/di/` | `AppContainer` và `DefaultAppContainer`. |
+| `core/navigation/` | `AppRoute` và `AppNavHost`, nối 5 gói. |
+| `features/auth_deck/` | Gói 1: danh tính và kho nội dung. |
+| `features/session_ai/` | Gói 2. |
+| `features/journal_insights/` | Gói 3. |
+| `features/reader_community/` | Gói 4. |
+| `features/economy_shop/` | Gói 5. |
 
-Quy ước: code của một chức năng nằm trong `feature/<tên>/`; thứ gì hai chức năng trở lên cùng dùng thì chuyển sang `core/`, `data/` hoặc `ui/components/`.
+Quy ước: code của một chức năng nằm trong `features/<gói>/`; thứ gì hai gói trở lên cùng dùng thì chuyển sang `core/`. Tên nhánh và commit theo mã task trên Tracking Sheet (ví dụ `UY-01`).
 
 ## 2. Đề xuất tên nhánh và quy trình
 
@@ -55,7 +67,7 @@ Viết `<mô-tả-ngắn>` bằng chữ thường không dấu, nối bằng d�
 ### Quy trình làm việc
 
 1. **Tạo nhánh** từ `main` mới nhất, đặt tên theo mẫu trên.
-2. **Làm và commit** trên nhánh đó, commit nhỏ và rõ nghĩa.
+2. **Làm và commit** trên nhánh đó, commit nhỏ và rõ nghĩa, mở đầu bằng mã task (ví dụ `UY-01: thêm cấu trúc thư mục`).
 3. **Mở PR vào `main`**, điền theo mẫu PR (`.github/pull_request_template.md`).
 4. **Gắn reviewer** đúng người ghi ở cột N (Reviewer) của task trong Tracking Sheet, và đổi trạng thái task sang "Chờ review".
 5. **Reviewer duyệt** theo đợt review cố định (Thu/CN). Duyệt xong thì merge vào `main`, rồi đổi task sang "Xong" và cập nhật Doc, Sheet.
