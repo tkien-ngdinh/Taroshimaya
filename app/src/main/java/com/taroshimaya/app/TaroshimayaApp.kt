@@ -29,9 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.taroshimaya.app.core.data.AppLanguagePreference
 import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
@@ -56,16 +54,35 @@ fun TaroshimayaApp(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaroshimayaShell(
     languagePreference: AppLanguagePreference,
     onSelectLanguage: (AppLanguagePreference) -> Unit,
     modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
 ) {
-    val navController = rememberNavController()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
+    AppNavHost(navController = navController) { selectedRoute, onSelectRoute, destinationContent ->
+        TaroshimayaScaffold(
+            languagePreference = languagePreference,
+            onSelectLanguage = onSelectLanguage,
+            selectedRoute = selectedRoute,
+            onSelectRoute = onSelectRoute,
+            modifier = modifier,
+            destinationContent = destinationContent,
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TaroshimayaScaffold(
+    languagePreference: AppLanguagePreference,
+    onSelectLanguage: (AppLanguagePreference) -> Unit,
+    selectedRoute: AppRoute?,
+    onSelectRoute: (AppRoute) -> Unit,
+    modifier: Modifier = Modifier,
+    destinationContent: @Composable (Modifier) -> Unit,
+) {
     var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
@@ -78,7 +95,7 @@ fun TaroshimayaShell(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = stringResource(R.string.v0_top_title),
+                            text = stringResource(R.string.app_name),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
@@ -89,7 +106,7 @@ fun TaroshimayaShell(
                             color = MaterialTheme.colorScheme.secondaryContainer,
                         ) {
                             Text(
-                                text = stringResource(R.string.v0_badge_version),
+                                text = stringResource(R.string.shell_version),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
@@ -101,7 +118,7 @@ fun TaroshimayaShell(
                     IconButton(onClick = { showLanguageDialog = true }) {
                         Icon(
                             imageVector = Icons.Outlined.Language,
-                            contentDescription = stringResource(R.string.v0_language_button_desc),
+                            contentDescription = stringResource(R.string.shell_language_button_desc),
                         )
                     }
                 },
@@ -110,21 +127,10 @@ fun TaroshimayaShell(
         bottomBar = {
             NavigationBar {
                 AppRoute.topLevelRoutes.forEach { destination ->
-                    val selected = currentDestination
-                        ?.hierarchy
-                        ?.any { it.route == destination.route } == true
                     val label = stringResource(destination.labelRes)
                     NavigationBarItem(
-                        selected = selected,
-                        onClick = {
-                            navController.navigate(destination.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
+                        selected = selectedRoute == destination,
+                        onClick = { onSelectRoute(destination) },
                         icon = {
                             Icon(
                                 imageVector = destination.icon,
@@ -144,10 +150,7 @@ fun TaroshimayaShell(
             }
         },
     ) { innerPadding ->
-        AppNavHost(
-            navController = navController,
-            modifier = Modifier.padding(innerPadding),
-        )
+        destinationContent(Modifier.padding(innerPadding))
     }
 
     if (showLanguageDialog) {
