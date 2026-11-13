@@ -4,7 +4,7 @@
 
 - Package / `applicationId`: `com.taroshimaya.app`
 - Gradle module duy nhất (MVP): `:app` (`compileSdk = 37`, `targetSdk = 37`, `minSdk = 24`)
-- Hướng dẫn cài môi trường chi tiết (Firebase, SHA-1, thiết bị): xem `docs/SETUP.md` (bổ sung ở task `UY-04` / `T20`).
+- Hướng dẫn cài môi trường chi tiết (Firebase, SHA-1, thiết bị): xem [docs/SETUP.md](docs/SETUP.md).
 
 ---
 
