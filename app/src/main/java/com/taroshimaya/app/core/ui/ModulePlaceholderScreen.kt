@@ -18,13 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
+import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
 
 /**
- * Reusable placeholder screen for the five feature packages.
- * All UI copy comes from string resources (C19) and styling relies on MaterialTheme tokens (DI-01).
+ * Clean reusable placeholder screen for the five feature packages.
+ * All UI copy comes from string resources (C19); colors, type and spacing come from D10 tokens (DI-03).
  * UI never branches on DataSourceMode or holds runtime data source state (DI-01).
  */
 @Composable
@@ -40,30 +39,33 @@ fun ModulePlaceholderScreen(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+            .padding(
+                horizontal = TaroshimayaTheme.spacing.screenHorizontal,
+                vertical = TaroshimayaTheme.spacing.screenVertical,
+            ),
+        verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.listItemGap),
     ) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                containerColor = MaterialTheme.colorScheme.surfaceContainerLow.copy(alpha = 0.85f),
+                contentColor = MaterialTheme.colorScheme.onSurface,
             ),
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(TaroshimayaTheme.spacing.cardPadding),
+                verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.sm),
             ) {
                 Text(
                     text = stringResource(titleRes),
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
                     text = stringResource(descriptionRes),
                     style = MaterialTheme.typography.bodyMedium,
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(TaroshimayaTheme.spacing.xs))
                 Text(
                     text = stringResource(
                         R.string.placeholder_owner_label,
@@ -87,13 +89,12 @@ fun ModulePlaceholderScreen(
 
         OutlinedCard(modifier = Modifier.fillMaxWidth()) {
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp),
+                modifier = Modifier.padding(TaroshimayaTheme.spacing.cardPadding),
+                verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.sm),
             ) {
                 Text(
                     text = stringResource(R.string.state_empty_title),
                     style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold,
                 )
                 Text(
                     text = stringResource(R.string.state_empty_subtitle),

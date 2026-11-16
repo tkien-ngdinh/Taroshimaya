@@ -11,9 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
+import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
 
 /**
  * Mandatory disclaimer block (Tab 3.6 · S06) rendered using design tokens & string resources.
@@ -24,16 +23,15 @@ fun DisclaimerBanner(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
         color = MaterialTheme.colorScheme.surfaceVariant,
-        tonalElevation = 1.dp,
+        tonalElevation = TaroshimayaTheme.elevation.level1,
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
+        Column(modifier = Modifier.padding(TaroshimayaTheme.spacing.md)) {
             Text(
                 text = stringResource(R.string.disclaimer_s06_title),
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(TaroshimayaTheme.spacing.xs))
             Text(
                 text = stringResource(R.string.disclaimer_s06_body),
                 style = MaterialTheme.typography.bodySmall,
