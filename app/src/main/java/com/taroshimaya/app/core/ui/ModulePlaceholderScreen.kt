@@ -3,7 +3,6 @@ package com.taroshimaya.app.core.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,10 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -26,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
 
 /**
- * Clean reusable placeholder screen used by the 5 v0 feature packages.
+ * Reusable placeholder screen for the five feature packages.
  * All UI copy comes from string resources (C19) and styling relies on MaterialTheme tokens (DI-01).
  * UI never branches on DataSourceMode or holds runtime data source state (DI-01).
  */
@@ -46,25 +43,6 @@ fun ModulePlaceholderScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.v0_banner_title),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(
-                    text = stringResource(R.string.v0_banner_subtitle),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
@@ -76,20 +54,6 @@ fun ModulePlaceholderScreen(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    AssistChip(
-                        onClick = {},
-                        label = {
-                            Text(
-                                text = stringResource(R.string.placeholder_status_badge),
-                                style = MaterialTheme.typography.labelSmall,
-                            )
-                        },
-                    )
-                }
                 Text(
                     text = stringResource(titleRes),
                     style = MaterialTheme.typography.headlineSmall,
@@ -133,11 +97,6 @@ fun ModulePlaceholderScreen(
                 )
                 Text(
                     text = stringResource(R.string.state_empty_subtitle),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(
-                    text = stringResource(R.string.placeholder_next_step),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

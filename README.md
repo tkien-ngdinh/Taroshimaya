@@ -16,7 +16,7 @@ Toàn bộ mã nguồn nằm trong `app/src/main/java/com/taroshimaya/app/`:
 com/taroshimaya/app/
 ├── TaroshimayaApplication.kt        # Khởi tạo DefaultAppContainer (Fake / Firebase)
 ├── MainActivity.kt                  # AppCompatActivity (hỗ trợ AppCompat per-app locales)
-├── TaroshimayaApp.kt                # App shell v0 (TopAppBar + LanguagePicker + Bottom NavigationBar)
+├── TaroshimayaApp.kt                # App shell v1 (TopAppBar + LanguagePicker + Bottom NavigationBar)
 ├── core/
 │   ├── auth/                        # Hợp đồng xác thực & phiên (UserRole, UserSession, AuthRepository, FakeAuthRepository)
 │   ├── data/                        # Công tắc DataSourceMode (FAKE / FIREBASE), C19 AppLanguagePreference & LanguageManager
@@ -42,12 +42,18 @@ Bên trong mỗi gói `features/<gói>/` chia theo 3 lớp chuẩn `ui/`, `domai
 | `core/auth/` | Interface đăng nhập dùng chung giữa các gói, gồm `UserSession` và `AuthRepository` (D1). |
 | `core/data/` | Model lõi, `DataSourceMode` (FAKE / FIREBASE) và quản lý song ngữ `LanguageManager`. |
 | `core/di/` | `AppContainer` và `DefaultAppContainer` (DI thủ công tại điểm khởi tạo app). |
-| `core/navigation/` | `AppRoute` và `AppNavHost`, nối 5 gói (mở rộng ở TA-05). |
+| `core/navigation/` | `AppRoute` và `AppNavHost` nối 5 tab cấp cao theo DI-01 (TA-05). |
 | `features/auth_deck/` | Gói 1: danh tính và kho nội dung (Uyên · D1–D3, D8). |
 | `features/session_ai/` | Gói 2: phiên trải bài và AI (Kiên · D4–D6). |
 | `features/journal_insights/` | Gói 3: hành trình và giao diện (Diệp · D10). |
 | `features/reader_community/` | Gói 4: reader và cộng đồng (Tân · D9). |
 | `features/economy_shop/` | Gói 5: xu, học tập và cửa hàng (Quỳnh · D7, D11). |
+
+Khung v1 mở ở tab **Trải bài** (`session_ai`). Chọn lại tab đang mở giữ nguyên màn hình. Back từ tab cấp cao khác quay về Trải bài.
+
+`AppNavHost` quản lý graph và xử lý điều hướng. Shell nhận tab đang chọn và callback. Composable dùng lại trong các gói nhận dữ liệu hiển thị và callback. Route chi tiết chỉ truyền ID hoặc tham số nhỏ.
+
+Khi nối màn hình Reader trong `features/reader_community`, `ReaderList` phát `onReaderClick(readerId)`. `AppNavHost` mở `ReaderDetail` với `readerId`, rồi ViewModel tải dữ liệu qua `ReaderRepository`. `AppContainer` chọn data source Fake hoặc Firebase cho luồng dữ liệu.
 
 ### Quy ước kiến trúc & song ngữ (C19)
 

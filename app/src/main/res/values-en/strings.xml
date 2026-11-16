@@ -2,12 +2,9 @@
 <resources>
     <string name="app_name">Taroshimaya</string>
 
-    <!-- Header & shell status (KI-03 v0) -->
-    <string name="v0_top_title">Taroshimaya</string>
-    <string name="v0_badge_version">v0 · KI-03</string>
-    <string name="v0_banner_title">Taroshimaya App Skeleton v0</string>
-    <string name="v0_banner_subtitle">Kotlin · Jetpack Compose · Material 3 · Bilingual VI &amp; EN</string>
-    <string name="v0_language_button_desc">Select app language</string>
+    <!-- App shell -->
+    <string name="shell_version">v1</string>
+    <string name="shell_language_button_desc">Select app language</string>
 
     <!-- Bottom navigation (5 feature packages for TA-05) -->
     <string name="nav_session">Reading</string>
@@ -28,10 +25,8 @@
     <string name="placeholder_package_label">Package: %1$s</string>
     <string name="placeholder_owner_label">Owner: %1$s</string>
     <string name="placeholder_features_label">Features: %1$s</string>
-    <string name="placeholder_status_badge">v0 skeleton ready</string>
-    <string name="placeholder_next_step">Ready for TA-05 (5-package navigation, 12/11), DI-03 (design tokens, 12/11), UY-06/UY-07 (Fake D1/D2), and Phase 1 screens.</string>
     <string name="state_loading">Loading…</string>
-    <string name="state_empty_title">v0 placeholder screen (no data yet)</string>
+    <string name="state_empty_title">Placeholder screen (no data yet)</string>
     <string name="state_empty_subtitle">The module owner will build this flow from Phase 1 without modifying other modules.</string>
     <string name="state_error_generic">Something went wrong. Please try again.</string>
     <string name="action_retry">Retry</string>

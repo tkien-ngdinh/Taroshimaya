@@ -2,12 +2,9 @@
 <resources>
     <string name="app_name">Taroshimaya</string>
 
-    <!-- Header & shell status (KI-03 v0) -->
-    <string name="v0_top_title">Taroshimaya</string>
-    <string name="v0_badge_version">v0 · KI-03</string>
-    <string name="v0_banner_title">Khung ứng dụng Taroshimaya v0</string>
-    <string name="v0_banner_subtitle">Kotlin · Jetpack Compose · Material 3 · Song ngữ Việt &amp; Anh</string>
-    <string name="v0_language_button_desc">Chọn ngôn ngữ ứng dụng</string>
+    <!-- App shell -->
+    <string name="shell_version">v1</string>
+    <string name="shell_language_button_desc">Chọn ngôn ngữ ứng dụng</string>
 
     <!-- Bottom navigation (5 feature packages for TA-05) -->
     <string name="nav_session">Trải bài</string>
@@ -28,10 +25,8 @@
     <string name="placeholder_package_label">Thư mục: %1$s</string>
     <string name="placeholder_owner_label">Phụ trách: %1$s</string>
     <string name="placeholder_features_label">Chức năng: %1$s</string>
-    <string name="placeholder_status_badge">Khung v0 sẵn sàng</string>
-    <string name="placeholder_next_step">Sẵn sàng cho TA-05 (điều hướng 5 gói, 12/11), DI-03 (design tokens, 12/11), UY-06/UY-07 (Fake D1/D2) và phát triển GĐ1.</string>
     <string name="state_loading">Đang tải…</string>
-    <string name="state_empty_title">Màn hình mẫu v0 (chưa có dữ liệu)</string>
+    <string name="state_empty_title">Màn hình mẫu (chưa có dữ liệu)</string>
     <string name="state_empty_subtitle">Chủ gói sẽ triển khai luồng chi tiết từ GĐ1 mà không sửa file khung của gói khác.</string>
     <string name="state_error_generic">Đã có lỗi xảy ra. Vui lòng thử lại.</string>
     <string name="action_retry">Thử lại</string>
