@@ -23,7 +23,7 @@ Kiên (Lead Gói 2 · features/session_ai)
 | `id` | `String` | Có | Document ID (Firestore auto-generated, lưu lại bên trong document) |
 | `userId` | `String` | Có | Foreign Key `users.uid` (camelCase theo quy ước) |
 | `question` | `String` | Có | Câu hỏi người dùng nhập (5–200 ký tự theo Guard F04 FSM) |
-| `deckId` | `String` | Có | ID bộ bài Tarot sử dụng (ví dụ: `rider_waite_standard` theo D2) |
+| `deckId` | `String` | Có | ID bộ bài Tarot sử dụng (ví dụ: `rider_waite` theo D2) |
 | `spreadId` | `String` | Có | ID kiểu trải bài (`spread_love_3`, `spread_career_3`, `spread_finance_3`, `spread_healing_3`, `spread_decision_3`, `spread_yes_no_1`, `custom_spread_3`) |
 | `spreadNameVi` | `String` | Có | Tên kiểu trải bài tiếng Việt (ví dụ: "Tình yêu & Gắn kết") |
 | `spreadNameEn` | `String` | Có | Tên kiểu trải bài tiếng Anh (ví dụ: "Love & Relationship") |
@@ -31,7 +31,7 @@ Kiên (Lead Gói 2 · features/session_ai)
 | `cards[].positionIndex` | `Int` | Có | Thứ tự vị trí lá trong sơ đồ (0, 1, 2...) |
 | `cards[].positionNameVi` | `String` | Có | Ý nghĩa vị trí tiếng Việt |
 | `cards[].positionNameEn` | `String` | Có | Ý nghĩa vị trí tiếng Anh |
-| `cards[].cardId` | `String` | Có | Mã lá bài theo D2 (ví dụ: `major_00_the_fool`, `cups_02`) |
+| `cards[].cardId` | `String` | Có | Mã lá bài theo D2 (ví dụ: `major_00_fool`, `minor_cups_02_two`) |
 | `cards[].cardNameVi` | `String` | Có | Tên lá bài tiếng Việt |
 | `cards[].cardNameEn` | `String` | Có | Tên lá bài tiếng Anh |
 | `cards[].arcanaType` | `String` | Có | `"MAJOR"` hoặc `"MINOR"` (hỗ trợ Diệp tính tỷ lệ F12) |
@@ -92,7 +92,7 @@ Kiên (Lead Gói 2 · features/session_ai)
 | `id` | `String` | Có | Khóa chính xác định: `{userId}_{dateLocalKey}` |
 | `userId` | `String` | Có | Foreign Key `users.uid` |
 | `dateLocalKey` | `String` | Có | Ngày rút theo múi giờ máy người dùng (`YYYY-MM-DD`, DL05) |
-| `deckId` | `String` | Có | Bộ bài sử dụng (`rider_waite_standard`) |
+| `deckId` | `String` | Có | Bộ bài sử dụng (`rider_waite`) |
 | `cardId` | `String` | Có | Mã lá bài rút được (D2) |
 | `cardNameVi` | `String` | Có | Tên lá bài tiếng Việt |
 | `cardNameEn` | `String` | Có | Tên lá bài tiếng Anh |

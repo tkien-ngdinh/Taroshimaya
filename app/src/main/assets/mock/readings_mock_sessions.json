@@ -1,9 +1,9 @@
 [
   {
     "id": "reading_mock_001_love",
-    "userId": "usr_glueck_kien_01",
+    "userId": "fake-user-001",
     "question": "Mối quan hệ hiện tại của tôi và người ấy sẽ phát triển như thế nào trong thời gian tới?",
-    "deckId": "rider_waite_standard",
+    "deckId": "rider_waite",
     "spreadId": "spread_love_3",
     "spreadNameVi": "Tình yêu & Gắn kết",
     "spreadNameEn": "Love & Relationship",
@@ -12,7 +12,7 @@
         "positionIndex": 0,
         "positionNameVi": "Năng lượng của bạn",
         "positionNameEn": "Your Energy",
-        "cardId": "cups_02",
+        "cardId": "minor_cups_02_two",
         "cardNameVi": "Hai Ly",
         "cardNameEn": "Two of Cups",
         "arcanaType": "MINOR",
@@ -27,7 +27,7 @@
         "positionIndex": 1,
         "positionNameVi": "Năng lượng của đối phương",
         "positionNameEn": "Partner's Energy",
-        "cardId": "swords_04",
+        "cardId": "minor_swords_04_four",
         "cardNameVi": "Bốn Kiếm",
         "cardNameEn": "Four of Swords",
         "arcanaType": "MINOR",
@@ -42,7 +42,7 @@
         "positionIndex": 2,
         "positionNameVi": "Xu hướng tương lai",
         "positionNameEn": "Connection Outcome",
-        "cardId": "major_06_the_lovers",
+        "cardId": "major_06_lovers",
         "cardNameVi": "Người Tình",
         "cardNameEn": "The Lovers",
         "arcanaType": "MAJOR",
@@ -63,19 +63,19 @@
       "cardInterpretations": [
         {
           "positionIndex": 0,
-          "cardId": "cups_02",
+          "cardId": "minor_cups_02_two",
           "interpretationVi": "Hai Ly đại diện cho sự hòa hợp cảm xúc chân thành, bạn đang sẵn lòng lắng nghe và chia sẻ chân thật với người ấy.",
           "interpretationEn": "Two of Cups signifies genuine emotional harmony and openness to heartfelt mutual sharing."
         },
         {
           "positionIndex": 1,
-          "cardId": "swords_04",
+          "cardId": "minor_swords_04_four",
           "interpretationVi": "Bốn Kiếm ngược cho thấy đối phương đã trải qua giai đoạn mỏi mệt tâm trí và đang sẵn sàng quay trở lại đối thoại thay vì trốn tránh.",
           "interpretationEn": "Four of Swords reversed indicates that your partner is concluding their mental retreat and is ready to re-engage in open dialogue."
         },
         {
           "positionIndex": 2,
-          "cardId": "major_06_the_lovers",
+          "cardId": "major_06_lovers",
           "interpretationVi": "The Lovers là biểu tượng tối thượng của sự lựa chọn từ trái tim và sự đồng điệu giá trị sống, báo hiệu bước tiến mới trong mối quan hệ.",
           "interpretationEn": "The Lovers marks mutual trust, shared values, and an affirmative choice toward meaningful union."
         }
@@ -98,9 +98,9 @@
   },
   {
     "id": "reading_mock_002_career",
-    "userId": "usr_glueck_kien_01",
+    "userId": "fake-user-001",
     "question": "Tôi có nên chuyển hướng sang phụ trách mảng kiến trúc hệ thống backend trong quý tới không?",
-    "deckId": "rider_waite_standard",
+    "deckId": "rider_waite",
     "spreadId": "spread_career_3",
     "spreadNameVi": "Sự nghiệp & Tiềm năng",
     "spreadNameEn": "Career & Professional",
@@ -109,7 +109,7 @@
         "positionIndex": 0,
         "positionNameVi": "Hiện trạng công việc",
         "positionNameEn": "Current Career State",
-        "cardId": "pentacles_08",
+        "cardId": "minor_pentacles_08_eight",
         "cardNameVi": "Tám Xu",
         "cardNameEn": "Eight of Pentacles",
         "arcanaType": "MINOR",
@@ -124,7 +124,7 @@
         "positionIndex": 1,
         "positionNameVi": "Thử thách & Trở ngại",
         "positionNameEn": "Obstacles & Challenges",
-        "cardId": "wands_10",
+        "cardId": "minor_wands_10_ten",
         "cardNameVi": "Mười Gậy",
         "cardNameEn": "Ten of Wands",
         "arcanaType": "MINOR",
@@ -139,7 +139,7 @@
         "positionIndex": 2,
         "positionNameVi": "Giải pháp & Tiềm năng",
         "positionNameEn": "Solution & Growth",
-        "cardId": "major_01_the_magician",
+        "cardId": "major_01_magician",
         "cardNameVi": "Nhà Ảo Thuật",
         "cardNameEn": "The Magician",
         "arcanaType": "MAJOR",
@@ -166,9 +166,9 @@
   },
   {
     "id": "reading_mock_003_decision",
-    "userId": "usr_glueck_kien_01",
+    "userId": "fake-user-001",
     "question": "Tôi có nên đầu tư vào khóa học chuyên sâu chứng chỉ Cloud Architect tuần này không?",
-    "deckId": "rider_waite_standard",
+    "deckId": "rider_waite",
     "spreadId": "spread_yes_no_1",
     "spreadNameVi": "Quyết định nhanh Yes/No",
     "spreadNameEn": "Quick Decision",
@@ -177,7 +177,7 @@
         "positionIndex": 0,
         "positionNameVi": "Thông điệp cốt lõi",
         "positionNameEn": "Direct Answer",
-        "cardId": "major_19_the_sun",
+        "cardId": "major_19_sun",
         "cardNameVi": "Mặt Trời",
         "cardNameEn": "The Sun",
         "arcanaType": "MAJOR",
@@ -198,7 +198,7 @@
       "cardInterpretations": [
         {
           "positionIndex": 0,
-          "cardId": "major_19_the_sun",
+          "cardId": "major_19_sun",
           "interpretationVi": "Mặt Trời khẳng định năng lực học tập và sự bứt phá; việc đầu tư này đem lại hiệu quả tức thì và niềm hứng khởi lớn.",
           "interpretationEn": "The Sun confirms optimal cognitive momentum and high return on educational investment."
         }

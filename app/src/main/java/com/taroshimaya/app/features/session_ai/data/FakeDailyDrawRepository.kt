@@ -24,11 +24,11 @@ class FakeDailyDrawRepository : DailyDrawRepository {
 
     private fun seedInitialDailyDraw() {
         val initialDraw = DailyDraw(
-            id = "usr_glueck_kien_01_2026-11-17",
-            userId = "usr_glueck_kien_01",
+            id = "fake-user-001_2026-11-17",
+            userId = "fake-user-001",
             dateLocalKey = "2026-11-17",
-            deckId = "rider_waite_standard",
-            cardId = "major_17_the_star",
+            deckId = "rider_waite",
+            cardId = "major_17_star",
             cardNameVi = "Ngôi Sao",
             cardNameEn = "The Star",
             arcanaType = ArcanaType.MAJOR,
@@ -39,7 +39,7 @@ class FakeDailyDrawRepository : DailyDrawRepository {
             dailyMessageEn = "Today radiates tranquil hope, spiritual renewal, and intuitive clarity. Trust your inner beacon.",
             streakCount = 7,
             coinReward = 20,
-            coinTransactionId = "usr_glueck_kien_01_daily_2026-11-17",
+            coinTransactionId = "fake-user-001_daily_2026-11-17",
             shareImageUrl = "https://taroshimaya.app/shares/daily/2026-11-17-the-star.png",
             drawnAtUtcIso = "2026-11-17T01:30:00Z",
             createdAtUtcIso = "2026-11-17T01:30:00Z",

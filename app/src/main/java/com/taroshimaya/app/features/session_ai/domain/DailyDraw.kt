@@ -8,7 +8,7 @@ data class DailyDraw(
     val id: String,
     val userId: String,
     val dateLocalKey: String, // YYYY-MM-DD in user's device timezone
-    val deckId: String = "rider_waite_standard",
+    val deckId: String = "rider_waite",
     val cardId: String,
     val cardNameVi: String,
     val cardNameEn: String,

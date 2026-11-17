@@ -28,7 +28,7 @@ class D4ContractJsonTest {
 
     @Test
     fun testFakeSessionReadingRepository_initialSeeds_contains3ValidSessions() = runTest {
-        val result = readingRepository.getRecentReadings("usr_glueck_kien_01", limit = 10)
+        val result = readingRepository.getRecentReadings("fake-user-001", limit = 10)
         assertTrue(result.isSuccess)
         val list = result.getOrThrow()
         assertEquals(3, list.size)
@@ -61,7 +61,7 @@ class D4ContractJsonTest {
 
     @Test
     fun testFiltering_bySpreadAndTags() = runTest {
-        val userId = "usr_glueck_kien_01"
+        val userId = "fake-user-001"
 
         // Filter by spreadId
         val loveResult = readingRepository.getReadingsFiltered(userId, spreadId = "spread_love_3")
@@ -116,21 +116,22 @@ class D4ContractJsonTest {
 
     @Test
     fun testReadingsStream_emitsLiveUpdates() = runTest {
-        val stream = readingRepository.getReadingsStream("usr_glueck_kien_01")
+        val stream = readingRepository.getReadingsStream("fake-user-001")
         val initialList = stream.first()
         assertEquals(3, initialList.size)
     }
 
     @Test
     fun testDailyDrawRepository_deterministicKeyAndRetrieval() = runTest {
-        val userId = "usr_glueck_kien_01"
+        val userId = "fake-user-001"
         val dateKey = "2026-11-17"
 
         val result = dailyDrawRepository.getTodayDailyDraw(userId, dateKey)
         assertTrue(result.isSuccess)
         val dailyDraw = result.getOrThrow()
         assertNotNull(dailyDraw)
-        assertEquals("major_17_the_star", dailyDraw?.cardId)
+        assertEquals("rider_waite", dailyDraw?.deckId)
+        assertEquals("major_17_star", dailyDraw?.cardId)
         assertEquals("Ngôi Sao", dailyDraw?.cardNameVi)
         assertEquals(7, dailyDraw?.streakCount)
         assertEquals(20, dailyDraw?.coinReward)

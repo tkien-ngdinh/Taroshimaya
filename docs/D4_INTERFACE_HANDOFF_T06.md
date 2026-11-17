@@ -12,7 +12,7 @@
 
 ## 2. Các bên liên quan:
 - **Bên cung cấp:** Kiên (Nguyễn Đình Trung Kiên) – PM / Lead Gói 2 (*features/session_ai*)
-- **Bên dùng chính:** Diệp (Trịnh Ngọc Diệp) – FE Lead / Lead Gói 3 (*features/journal_insights*: F09, F10, F11, F12, F24)
+- **Bên dùng chính:** Diệp (Dương Thị Bích Diệp) – FE Lead / Lead Gói 3 (*features/journal_insights*: F09, F10, F11, F12, F24)
 - **Bên phối hợp liên quan:** Tân (Gói 4 – F19), Quỳnh (Gói 5 / BE Lead – QU-07 Core Schema)
 - **Người liên hệ khi có lỗi:** Kiên
 
@@ -88,6 +88,7 @@ val todayDraw = dailyDrawRepository.getTodayDailyDraw(
 | Ngày | Branch / PR | Nội dung thay đổi | Breaking Change? | Người cập nhật |
 | :---: | :--- | :--- | :---: | :---: |
 | 17/11/2026 | `feat/KI-05-d4-readings-daily-draws-schema` | Bàn giao Hợp đồng D4, Schema T07, 3 phiên mẫu JSON và Fake Repositories | Không (Bản ban đầu) | Kiên |
+| 17/11/2026 | `feat/KI-05-d4-readings-daily-draws-schema` | Đồng bộ mock `userId` (`fake-user-001`), `deckId` (`rider_waite`) và `cardId` theo hợp đồng D1 (`UY-06`) & D2 (`UY-07`) | Không | Kiên |
 
 ## 7. Xác nhận từ bên dùng (Sign-off):
 - Giao cho Diệp nghiệm thu tích hợp tại task `DI-07` (*Xác nhận D4 đủ cho F09, F11, F12*).
