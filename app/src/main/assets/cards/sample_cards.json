@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": 1,
+  "note": "DU LIEU MAU (UY-07, D2 mau): 28 la de cac goi dung som. Ban du 78 la do UY-12 nap. URL anh la scan goc Rider-Waite 1909 tren Wikimedia Commons (public domain, C14a), can doi chieu lai o T15.",
+  "decks": [
+    {
+      "id": "rider_waite",
+      "nameVi": "Rider-Waite",
+      "nameEn": "Rider-Waite",
+      "backImage": "card_back_default",
+      "isDefault": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "major_00_fool",
+      "arcana": "major",
+      "suit": null,
+      "number": 0,
+      "nameVi": "Kẻ Khờ",
+      "nameEn": "The Fool",
+      "element": "Air",
+      "keywordsUpright": {
+        "vi": [
+          "khởi đầu mới",
+          "tự do",
+          "ngây thơ",
+          "phiêu lưu"
+        ],
+        "en": [
+          "new beginnings",
+          "freedom",
+          "innocence",
+          "adventure"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "bốc đồng",
+          "liều lĩnh",
+          "thiếu cân nhắc"
+        ],
+        "en": [
+          "recklessness",
+          "naivety",
+          "poor judgment"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_00_Fool.jpg"
+      }
+    },
+    {
+      "id": "major_01_magician",
+      "arcana": "major",
+      "suit": null,
+      "number": 1,
+      "nameVi": "Nhà Ảo Thuật",
+      "nameEn": "The Magician",
+      "element": "Air",
+      "keywordsUpright": {
+        "vi": [
+          "ý chí",
+          "sáng tạo",
+          "kỹ năng",
+          "hành động"
+        ],
+        "en": [
+          "willpower",
+          "creation",
+          "skill",
+          "action"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "thao túng",
+          "tài năng bị phí",
+          "thiếu tập trung"
+        ],
+        "en": [
+          "manipulation",
+          "wasted talent",
+          "lack of focus"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_01_Magician.jpg"
+      }
+    },
+    {
+      "id": "major_02_high_priestess",
+      "arcana": "major",
+      "suit": null,
+      "number": 2,
+      "nameVi": "Nữ Tư Tế",
+      "nameEn": "The High Priestess",
+      "element": "Water",
+      "keywordsUpright": {
+        "vi": [
+          "trực giác",
+          "bí ẩn",
+          "tiềm thức",
+          "tĩnh lặng"
+        ],
+        "en": [
+          "intuition",
+          "mystery",
+          "subconscious",
+          "stillness"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "bí mật bị giấu",
+          "phớt lờ trực giác"
+        ],
+        "en": [
+          "hidden secrets",
+          "ignoring intuition"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_02_High_Priestess.jpg"
+      }
+    },
+    {
+      "id": "major_03_empress",
+      "arcana": "major",
+      "suit": null,
+      "number": 3,
+      "nameVi": "Nữ Hoàng",
+      "nameEn": "The Empress",
+      "element": "Earth",
+      "keywordsUpright": {
+        "vi": [
+          "nuôi dưỡng",
+          "sung túc",
+          "nữ tính",
+          "sáng tạo"
+        ],
+        "en": [
+          "nurturing",
+          "abundance",
+          "femininity",
+          "creativity"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "phụ thuộc",
+          "trì trệ",
+          "bỏ bê bản thân"
+        ],
+        "en": [
+          "dependence",
+          "stagnation",
+          "self-neglect"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_03_Empress.jpg"
+      }
+    },
+    {
+      "id": "major_04_emperor",
+      "arcana": "major",
+      "suit": null,
+      "number": 4,
+      "nameVi": "Hoàng Đế",
+      "nameEn": "The Emperor",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "quyền lực",
+          "cấu trúc",
+          "ổn định",
+          "lãnh đạo"
+        ],
+        "en": [
+          "authority",
+          "structure",
+          "stability",
+          "leadership"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "độc đoán",
+          "cứng nhắc",
+          "kiểm soát quá mức"
+        ],
+        "en": [
+          "domination",
+          "rigidity",
+          "over-control"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_04_Emperor.jpg"
+      }
+    },
+    {
+      "id": "major_05_hierophant",
+      "arcana": "major",
+      "suit": null,
+      "number": 5,
+      "nameVi": "Giáo Hoàng",
+      "nameEn": "The Hierophant",
+      "element": "Earth",
+      "keywordsUpright": {
+        "vi": [
+          "truyền thống",
+          "niềm tin",
+          "hướng dẫn",
+          "học hỏi"
+        ],
+        "en": [
+          "tradition",
+          "belief",
+          "guidance",
+          "learning"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "phá lệ",
+          "nổi loạn",
+          "giáo điều"
+        ],
+        "en": [
+          "nonconformity",
+          "rebellion",
+          "dogma"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_05_Hierophant.jpg"
+      }
+    },
+    {
+      "id": "major_06_lovers",
+      "arcana": "major",
+      "suit": null,
+      "number": 6,
+      "nameVi": "Người Tình",
+      "nameEn": "The Lovers",
+      "element": "Air",
+      "keywordsUpright": {
+        "vi": [
+          "tình yêu",
+          "lựa chọn",
+          "hòa hợp",
+          "giá trị"
+        ],
+        "en": [
+          "love",
+          "choice",
+          "harmony",
+          "values"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "mất cân bằng",
+          "chia rẽ",
+          "lựa chọn sai"
+        ],
+        "en": [
+          "imbalance",
+          "disharmony",
+          "misaligned choices"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_06_Lovers.jpg"
+      }
+    },
+    {
+      "id": "major_07_chariot",
+      "arcana": "major",
+      "suit": null,
+      "number": 7,
+      "nameVi": "Cỗ Xe",
+      "nameEn": "The Chariot",
+      "element": "Water",
+      "keywordsUpright": {
+        "vi": [
+          "quyết tâm",
+          "chiến thắng",
+          "kỷ luật",
+          "tiến lên"
+        ],
+        "en": [
+          "determination",
+          "victory",
+          "discipline",
+          "drive"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "mất kiểm soát",
+          "thiếu định hướng",
+          "hung hăng"
+        ],
+        "en": [
+          "loss of control",
+          "lack of direction",
+          "aggression"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_07_Chariot.jpg"
+      }
+    },
+    {
+      "id": "major_08_strength",
+      "arcana": "major",
+      "suit": null,
+      "number": 8,
+      "nameVi": "Sức Mạnh",
+      "nameEn": "Strength",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "dũng cảm",
+          "kiên nhẫn",
+          "lòng trắc ẩn",
+          "nội lực"
+        ],
+        "en": [
+          "courage",
+          "patience",
+          "compassion",
+          "inner strength"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "nghi ngờ bản thân",
+          "yếu đuối",
+          "thiếu tự tin"
+        ],
+        "en": [
+          "self-doubt",
+          "weakness",
+          "insecurity"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_08_Strength.jpg"
+      }
+    },
+    {
+      "id": "major_09_hermit",
+      "arcana": "major",
+      "suit": null,
+      "number": 9,
+      "nameVi": "Ẩn Sĩ",
+      "nameEn": "The Hermit",
+      "element": "Earth",
+      "keywordsUpright": {
+        "vi": [
+          "nội tâm",
+          "tìm kiếm",
+          "cô độc",
+          "trí tuệ"
+        ],
+        "en": [
+          "introspection",
+          "soul-searching",
+          "solitude",
+          "wisdom"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "cô lập",
+          "xa lánh",
+          "chối bỏ"
+        ],
+        "en": [
+          "isolation",
+          "withdrawal",
+          "loneliness"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_09_Hermit.jpg"
+      }
+    },
+    {
+      "id": "major_10_wheel_of_fortune",
+      "arcana": "major",
+      "suit": null,
+      "number": 10,
+      "nameVi": "Bánh Xe Vận Mệnh",
+      "nameEn": "Wheel of Fortune",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "chu kỳ",
+          "số phận",
+          "thay đổi",
+          "may mắn"
+        ],
+        "en": [
+          "cycles",
+          "fate",
+          "change",
+          "luck"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "xui xẻo",
+          "chống lại thay đổi",
+          "mất kiểm soát"
+        ],
+        "en": [
+          "bad luck",
+          "resisting change",
+          "loss of control"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_10_Wheel_of_Fortune.jpg"
+      }
+    },
+    {
+      "id": "major_11_justice",
+      "arcana": "major",
+      "suit": null,
+      "number": 11,
+      "nameVi": "Công Lý",
+      "nameEn": "Justice",
+      "element": "Air",
+      "keywordsUpright": {
+        "vi": [
+          "công bằng",
+          "sự thật",
+          "nhân quả",
+          "cân bằng"
+        ],
+        "en": [
+          "fairness",
+          "truth",
+          "cause and effect",
+          "balance"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "bất công",
+          "thiếu trách nhiệm",
+          "thiên vị"
+        ],
+        "en": [
+          "injustice",
+          "unaccountability",
+          "bias"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_11_Justice.jpg"
+      }
+    },
+    {
+      "id": "major_12_hanged_man",
+      "arcana": "major",
+      "suit": null,
+      "number": 12,
+      "nameVi": "Người Treo Ngược",
+      "nameEn": "The Hanged Man",
+      "element": "Water",
+      "keywordsUpright": {
+        "vi": [
+          "buông bỏ",
+          "góc nhìn mới",
+          "tạm dừng",
+          "hy sinh"
+        ],
+        "en": [
+          "surrender",
+          "new perspective",
+          "pause",
+          "sacrifice"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "trì hoãn",
+          "kháng cự",
+          "hy sinh vô ích"
+        ],
+        "en": [
+          "delay",
+          "resistance",
+          "pointless sacrifice"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_12_Hanged_Man.jpg"
+      }
+    },
+    {
+      "id": "major_13_death",
+      "arcana": "major",
+      "suit": null,
+      "number": 13,
+      "nameVi": "Thần Chết",
+      "nameEn": "Death",
+      "element": "Water",
+      "keywordsUpright": {
+        "vi": [
+          "kết thúc",
+          "chuyển hóa",
+          "khép lại",
+          "tái sinh"
+        ],
+        "en": [
+          "endings",
+          "transformation",
+          "closure",
+          "rebirth"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "sợ thay đổi",
+          "níu kéo",
+          "trì trệ"
+        ],
+        "en": [
+          "fear of change",
+          "holding on",
+          "stagnation"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_13_Death.jpg"
+      }
+    },
+    {
+      "id": "major_14_temperance",
+      "arcana": "major",
+      "suit": null,
+      "number": 14,
+      "nameVi": "Điều Độ",
+      "nameEn": "Temperance",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "cân bằng",
+          "kiên nhẫn",
+          "hòa hợp",
+          "điều hòa"
+        ],
+        "en": [
+          "balance",
+          "patience",
+          "harmony",
+          "moderation"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "mất cân bằng",
+          "thái quá",
+          "nóng vội"
+        ],
+        "en": [
+          "imbalance",
+          "excess",
+          "impatience"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_14_Temperance.jpg"
+      }
+    },
+    {
+      "id": "major_15_devil",
+      "arcana": "major",
+      "suit": null,
+      "number": 15,
+      "nameVi": "Ác Quỷ",
+      "nameEn": "The Devil",
+      "element": "Earth",
+      "keywordsUpright": {
+        "vi": [
+          "ràng buộc",
+          "cám dỗ",
+          "vật chất",
+          "nghiện"
+        ],
+        "en": [
+          "bondage",
+          "temptation",
+          "materialism",
+          "addiction"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "giải thoát",
+          "lấy lại quyền tự chủ",
+          "phá xiềng"
+        ],
+        "en": [
+          "liberation",
+          "reclaiming power",
+          "breaking free"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_15_Devil.jpg"
+      }
+    },
+    {
+      "id": "major_16_tower",
+      "arcana": "major",
+      "suit": null,
+      "number": 16,
+      "nameVi": "Tòa Tháp",
+      "nameEn": "The Tower",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "đổ vỡ",
+          "bất ngờ",
+          "thức tỉnh",
+          "biến động"
+        ],
+        "en": [
+          "upheaval",
+          "sudden change",
+          "awakening",
+          "disruption"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "né tránh thảm họa",
+          "sợ thay đổi",
+          "đổ vỡ kéo dài"
+        ],
+        "en": [
+          "avoiding disaster",
+          "fear of change",
+          "prolonged collapse"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_16_Tower.jpg"
+      }
+    },
+    {
+      "id": "major_17_star",
+      "arcana": "major",
+      "suit": null,
+      "number": 17,
+      "nameVi": "Ngôi Sao",
+      "nameEn": "The Star",
+      "element": "Air",
+      "keywordsUpright": {
+        "vi": [
+          "hy vọng",
+          "chữa lành",
+          "cảm hứng",
+          "bình yên"
+        ],
+        "en": [
+          "hope",
+          "healing",
+          "inspiration",
+          "serenity"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "mất niềm tin",
+          "thất vọng",
+          "bi quan"
+        ],
+        "en": [
+          "lost faith",
+          "disappointment",
+          "pessimism"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_17_Star.jpg"
+      }
+    },
+    {
+      "id": "major_18_moon",
+      "arcana": "major",
+      "suit": null,
+      "number": 18,
+      "nameVi": "Mặt Trăng",
+      "nameEn": "The Moon",
+      "element": "Water",
+      "keywordsUpright": {
+        "vi": [
+          "ảo giác",
+          "nỗi sợ",
+          "tiềm thức",
+          "bất định"
+        ],
+        "en": [
+          "illusion",
+          "fear",
+          "subconscious",
+          "uncertainty"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "sáng tỏ",
+          "giải tỏa nỗi sợ",
+          "sự thật lộ diện"
+        ],
+        "en": [
+          "clarity",
+          "release of fear",
+          "truth revealed"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_18_Moon.jpg"
+      }
+    },
+    {
+      "id": "major_19_sun",
+      "arcana": "major",
+      "suit": null,
+      "number": 19,
+      "nameVi": "Mặt Trời",
+      "nameEn": "The Sun",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "niềm vui",
+          "thành công",
+          "sức sống",
+          "lạc quan"
+        ],
+        "en": [
+          "joy",
+          "success",
+          "vitality",
+          "optimism"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "lạc quan quá mức",
+          "niềm vui bị trì hoãn"
+        ],
+        "en": [
+          "over-optimism",
+          "delayed joy"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_19_Sun.jpg"
+      }
+    },
+    {
+      "id": "major_20_judgement",
+      "arcana": "major",
+      "suit": null,
+      "number": 20,
+      "nameVi": "Phán Xét",
+      "nameEn": "Judgement",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "thức tỉnh",
+          "tái sinh",
+          "tự đánh giá",
+          "lời kêu gọi"
+        ],
+        "en": [
+          "awakening",
+          "rebirth",
+          "self-evaluation",
+          "calling"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "tự phán xét",
+          "nghi ngờ bản thân",
+          "bỏ lỡ lời kêu gọi"
+        ],
+        "en": [
+          "self-judgment",
+          "self-doubt",
+          "ignoring the call"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_20_Judgement.jpg"
+      }
+    },
+    {
+      "id": "major_21_world",
+      "arcana": "major",
+      "suit": null,
+      "number": 21,
+      "nameVi": "Thế Giới",
+      "nameEn": "The World",
+      "element": "Earth",
+      "keywordsUpright": {
+        "vi": [
+          "hoàn thành",
+          "trọn vẹn",
+          "thành tựu",
+          "hội nhập"
+        ],
+        "en": [
+          "completion",
+          "wholeness",
+          "accomplishment",
+          "integration"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "dở dang",
+          "thiếu khép lại",
+          "trì hoãn hoàn thành"
+        ],
+        "en": [
+          "incompleteness",
+          "lack of closure",
+          "delayed completion"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/RWS_Tarot_21_World.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_01_ace",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 1,
+      "nameVi": "Át Gậy",
+      "nameEn": "Ace of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "khởi đầu",
+          "cảm hứng",
+          "tiềm năng",
+          "đam mê"
+        ],
+        "en": [
+          "inspiration",
+          "potential",
+          "new spark",
+          "passion"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "trì hoãn",
+          "thiếu động lực"
+        ],
+        "en": [
+          "delays",
+          "lack of motivation"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands01.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_02_two",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 2,
+      "nameVi": "Hai Gậy",
+      "nameEn": "Two of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "lập kế hoạch",
+          "quyết định",
+          "tầm nhìn",
+          "khám phá"
+        ],
+        "en": [
+          "planning",
+          "decisions",
+          "vision",
+          "discovery"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "sợ bước ra",
+          "kế hoạch kém"
+        ],
+        "en": [
+          "fear of the unknown",
+          "poor planning"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands02.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_03_three",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 3,
+      "nameVi": "Ba Gậy",
+      "nameEn": "Three of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "mở rộng",
+          "tầm nhìn xa",
+          "hợp tác",
+          "chờ kết quả"
+        ],
+        "en": [
+          "expansion",
+          "foresight",
+          "collaboration",
+          "awaiting results"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "trở ngại",
+          "chậm trễ",
+          "thiếu tầm nhìn"
+        ],
+        "en": [
+          "obstacles",
+          "delays",
+          "lack of foresight"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands03.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_04_four",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 4,
+      "nameVi": "Bốn Gậy",
+      "nameEn": "Four of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "ăn mừng",
+          "hòa hợp",
+          "ổn định",
+          "cộng đồng"
+        ],
+        "en": [
+          "celebration",
+          "harmony",
+          "stability",
+          "community"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "bất hòa",
+          "chưa ổn định"
+        ],
+        "en": [
+          "disharmony",
+          "instability"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands04.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_05_five",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 5,
+      "nameVi": "Năm Gậy",
+      "nameEn": "Five of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "xung đột",
+          "cạnh tranh",
+          "bất đồng",
+          "thử thách"
+        ],
+        "en": [
+          "conflict",
+          "competition",
+          "disagreement",
+          "challenge"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "tránh xung đột",
+          "giải quyết mâu thuẫn"
+        ],
+        "en": [
+          "avoiding conflict",
+          "resolution"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands05.jpg"
+      }
+    },
+    {
+      "id": "minor_wands_06_six",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 6,
+      "nameVi": "Sáu Gậy",
+      "nameEn": "Six of Wands",
+      "element": "Fire",
+      "keywordsUpright": {
+        "vi": [
+          "chiến thắng",
+          "được công nhận",
+          "tự hào",
+          "thành công"
+        ],
+        "en": [
+          "victory",
+          "recognition",
+          "pride",
+          "success"
+        ]
+      },
+      "keywordsReversed": {
+        "vi": [
+          "thất bại",
+          "thiếu công nhận",
+          "kiêu ngạo"
+        ],
+        "en": [
+          "failure",
+          "lack of recognition",
+          "arrogance"
+        ]
+      },
+      "imageUrlByDeck": {
+        "rider_waite": "https://commons.wikimedia.org/wiki/Special:FilePath/Wands06.jpg"
+      }
+    }
+  ]
+}
