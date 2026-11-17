@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Sample card back (D2 / UY-07): simple neutral design, no third-party artwork. -->
+<!-- Sample card back (D2 / UY-07): simple neutral design, no third-party artwork.
+     Intrinsic size kept within 200x200dp (lint VectorRaster); screens scale it with a Modifier.
+     Referenced by name from Deck.backImage in sample_cards.json, not from R, hence UnusedResources
+     is ignored here and the resource is kept for shrinkResources in res/raw/keep.xml. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="200dp"
-    android:height="340dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="118dp"
+    android:height="200dp"
+    tools:ignore="UnusedResources"
     android:viewportWidth="200"
     android:viewportHeight="340">
     <path

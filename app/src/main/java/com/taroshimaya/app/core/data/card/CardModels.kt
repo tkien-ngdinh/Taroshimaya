@@ -1,5 +1,7 @@
 package com.taroshimaya.app.core.data.card
 
+import java.util.Locale
+
 /**
  * D2 core models (owned by Uyên): one tarot card and one deck. See D2 contract in the project doc
  * (cardId convention: `major_00_fool`..`major_21_world`, `minor_wands_01_ace`..`minor_pentacles_14_king`).
@@ -64,13 +66,19 @@ object CardIds {
 
     fun major(number: Int): String {
         require(number in MAJOR.indices) { "Major arcana number must be 0..21, was $number" }
-        return "major_%02d_%s".format(number, MAJOR[number])
+        return "major_${twoDigits(number)}_${MAJOR[number]}"
     }
 
     fun minor(suit: Suit, number: Int): String {
         require(number in 1..RANKS.size) { "Minor arcana number must be 1..14, was $number" }
-        return "minor_%s_%02d_%s".format(suit.name.lowercase(), number, RANKS[number - 1])
+        return "minor_${suit.name.lowercase(Locale.ROOT)}_${twoDigits(number)}_${RANKS[number - 1]}"
     }
+
+    /**
+     * ASCII zero-padding without String.format, so ids never pick up the device locale
+     * (e.g. Arabic/Persian digits from "%02d", Turkish dotless i from lowercase()).
+     */
+    private fun twoDigits(n: Int): String = n.toString().padStart(2, '0')
 
     /** All 78 ids: 22 major then wands, cups, swords, pentacles (14 each). */
     fun all78(): List<String> =
