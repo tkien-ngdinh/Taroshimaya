@@ -3,6 +3,7 @@ package com.taroshimaya.app.core.auth
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.Locale
 
 /**
  * In-memory Fake of [AuthRepository] (D1 sample, UY-06). No network, no Firebase.
@@ -19,13 +20,11 @@ class FakeAuthRepository : AuthRepository {
     }
 
     override suspend fun switchRole(role: UserRole) {
-        val current = _currentSession.value
-        _currentSession.value = if (current?.isSignedIn == true) {
-            fakeSessionFor(role)
-        } else {
-            // Signed out: only the role of the guest changes, so screens can be previewed per role.
-            (current ?: GUEST_SESSION).copy(role = role)
+        // A guest must never hold READER/ADMIN while isSignedIn = false (review UY-06, item 2).
+        check(_currentSession.value?.isSignedIn == true) {
+            "switchRole($role) requires a signed-in session; call signInWithRole() first."
         }
+        _currentSession.value = fakeSessionFor(role)
     }
 
     override suspend fun signOut() {
@@ -41,10 +40,11 @@ class FakeAuthRepository : AuthRepository {
         )
 
         fun fakeSessionFor(role: UserRole): UserSession {
-            val key = role.name.lowercase()
+            // Locale.ROOT: ids must not depend on the device locale (e.g. Turkish dotless i).
+            val key = role.name.lowercase(Locale.ROOT)
             return UserSession(
                 uid = "fake-$key-001",
-                displayName = "Fake ${role.name.lowercase().replaceFirstChar { it.uppercase() }}",
+                displayName = "Fake ${key.replaceFirstChar { it.titlecase(Locale.ROOT) }}",
                 role = role,
                 isSignedIn = true,
                 email = "$key@fake.taroshimaya.test",

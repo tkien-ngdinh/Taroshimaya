@@ -16,8 +16,13 @@ interface AuthRepository {
     suspend fun signInWithRole(role: UserRole)
 
     /**
-     * Role switch ("công tắc đổi 3 vai trò") for development and previews: changes the role of the
-     * current session and keeps the sign-in state. Real implementations may restrict or ignore it.
+     * Role switch ("công tắc đổi 3 vai trò") for development and previews: replaces the current
+     * signed-in session with the fixed fake user of [role]. Real implementations may restrict or ignore it.
+     *
+     * Requires a signed-in session: a guest never carries an elevated role.
+     * Callers must still check [UserSession.isSignedIn] together with [UserSession.role] for access control.
+     *
+     * @throws IllegalStateException if no user is signed in. Call [signInWithRole] first.
      */
     suspend fun switchRole(role: UserRole)
 
