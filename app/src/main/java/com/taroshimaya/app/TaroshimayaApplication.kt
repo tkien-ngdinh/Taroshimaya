@@ -8,5 +8,9 @@ import com.taroshimaya.app.core.di.DefaultAppContainer
  * Application entry point holding the manual DI container ([AppContainer]) for the app lifecycle.
  */
 class TaroshimayaApplication : Application() {
-    val container: AppContainer by lazy { DefaultAppContainer() }
+    val container: AppContainer by lazy {
+        DefaultAppContainer(
+            readAsset = { path -> assets.open(path).bufferedReader().use { it.readText() } },
+        )
+    }
 }

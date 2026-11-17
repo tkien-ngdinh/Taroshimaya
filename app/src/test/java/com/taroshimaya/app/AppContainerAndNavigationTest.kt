@@ -61,7 +61,7 @@ class AppContainerAndNavigationTest {
 
     @Test
     fun featureFakeDataSources_initializeWithoutAndroidContext() {
-        assertEquals(3, FakeAuthDeckDataSource().availableDeckCount())
+        assertEquals(1, FakeAuthDeckDataSource().availableDeckCount())
         assertEquals(3, FakeSessionAiDataSource().supportedSpreadCount())
         assertEquals(0, FakeJournalInsightsDataSource().sampleEntryCount())
         assertEquals(0, FakeReaderCommunityDataSource().samplePostCount())
