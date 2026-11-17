@@ -83,9 +83,9 @@ class F04StateMachineTest {
         assertNull(state.questionError)
 
         // 3. Select Deck
-        state = stateMachine.reduce(state, F04SessionEvent.SelectDeck(deckId = "rider_waite_1909", isUnlocked = true))
+        state = stateMachine.reduce(state, F04SessionEvent.SelectDeck(deckId = "rider_waite", isUnlocked = true))
         assertEquals(F04SessionStep.SELECT_SPREAD, state.step)
-        assertEquals("rider_waite_1909", state.selectedDeckId)
+        assertEquals("rider_waite", state.selectedDeckId)
 
         // 4. Select Spread (Love 3 cards)
         state = stateMachine.reduce(state, F04SessionEvent.SelectSpread(PresetSpreads.LOVE_3))
@@ -108,7 +108,7 @@ class F04StateMachineTest {
         assertEquals(F04SessionStep.DRAWING_CARD, state.step)
         assertEquals(2, state.drawnCardCount)
 
-        state = stateMachine.reduce(state, F04SessionEvent.DrawCard("major_02_priestess", CardOrientation.REVERSED))
+        state = stateMachine.reduce(state, F04SessionEvent.DrawCard("major_02_high_priestess", CardOrientation.REVERSED))
         assertEquals(F04SessionStep.CARDS_PLACED, state.step)
         assertEquals(3, state.drawnCardCount)
         assertTrue(state.hasDrawnAllCards)
@@ -168,7 +168,7 @@ class F04StateMachineTest {
         assertEquals(F04SessionStep.SELECT_DECK, state.step)
         assertNotNull(state.saveError)
 
-        state = stateMachine.reduce(state, F04SessionEvent.SelectDeck("rider_waite_1909", isUnlocked = true))
+        state = stateMachine.reduce(state, F04SessionEvent.SelectDeck("rider_waite", isUnlocked = true))
         assertEquals(F04SessionStep.SELECT_SPREAD, state.step)
         assertNull(state.saveError)
     }
