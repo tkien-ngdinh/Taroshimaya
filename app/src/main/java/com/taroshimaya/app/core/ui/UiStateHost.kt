@@ -17,9 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
 import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
 
@@ -38,12 +36,12 @@ fun <T> UiStateHost(
             Box(
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(24.dp),
+                    .padding(TaroshimayaTheme.spacing.xl),
                 contentAlignment = Alignment.Center,
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.md),
                 ) {
                     CircularProgressIndicator()
                     Text(
@@ -59,16 +57,15 @@ fun <T> UiStateHost(
             OutlinedCard(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(TaroshimayaTheme.spacing.lg),
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.padding(TaroshimayaTheme.spacing.cardPadding),
+                    verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.sm),
                 ) {
                     Text(
                         text = stringResource(R.string.state_empty_title),
                         style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.SemiBold,
                     )
                     Text(
                         text = stringResource(R.string.state_empty_subtitle),
@@ -88,18 +85,18 @@ fun <T> UiStateHost(
             OutlinedCard(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(TaroshimayaTheme.spacing.lg),
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.padding(TaroshimayaTheme.spacing.cardPadding),
+                    verticalArrangement = Arrangement.spacedBy(TaroshimayaTheme.spacing.sm),
                 ) {
                     Text(
                         text = errorText,
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.error,
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(TaroshimayaTheme.spacing.xs))
                     Button(onClick = onRetry) {
                         Text(text = stringResource(R.string.action_retry))
                     }

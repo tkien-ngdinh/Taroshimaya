@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Taroshimaya" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="Theme.Taroshimaya" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/taro_window_background</item>
+    </style>
 </resources>

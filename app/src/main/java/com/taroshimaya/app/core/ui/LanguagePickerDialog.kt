@@ -1,13 +1,14 @@
 package com.taroshimaya.app.core.ui
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -18,9 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.unit.dp
 import com.taroshimaya.app.R
 import com.taroshimaya.app.core.data.AppLanguagePreference
+import com.taroshimaya.app.core.designsystem.TaroshimayaTheme
 
 /**
  * Bilingual C19 picker exposing the exact 3 choices proposed by DI-01:
@@ -47,7 +48,7 @@ fun LanguagePickerDialog(
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(TaroshimayaTheme.spacing.md))
                 LanguageChoiceRow(
                     label = stringResource(R.string.language_option_system),
                     selected = currentPreference == AppLanguagePreference.SYSTEM,
@@ -82,15 +83,16 @@ private fun LanguageChoiceRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(role = Role.RadioButton, onClick = onClick)
-            .padding(vertical = 8.dp),
+            .heightIn(min = TaroshimayaTheme.sizing.minTouchTarget)
+            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+            .padding(vertical = TaroshimayaTheme.spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioButton(
             selected = selected,
             onClick = null,
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(TaroshimayaTheme.spacing.sm))
         Text(
             text = label,
             style = MaterialTheme.typography.bodyLarge,

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- D10, DI-03: nền cửa sổ khi máy bật chế độ tối, khớp theme Mystic Night. -->
+<resources>
+    <color name="taro_window_background">#FF111B6B</color>
+</resources>

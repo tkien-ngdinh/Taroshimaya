@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- D10, DI-03: F14 theme names (English, C19). -->
+<resources>
+    <string name="theme_variant_mystic_night">Mystic Night</string>
+    <string name="theme_variant_moonlight">Moonlight</string>
+    <string name="theme_variant_classic_tarot">Classic Tarot</string>
+    <string name="theme_variant_celestial_aurora">Celestial Aurora</string>
+
+    <!-- Theme picker dialog (F14 & DI-03) -->
+    <string name="settings_theme_title">Magical Themes</string>
+    <string name="settings_theme_hint">Choose one of Taroshimaya 4 mystical aesthetics:</string>
+    <string name="theme_option_system">System default</string>
+    <string name="theme_option_system_desc">Automatically follow your device light or dark mode</string>
+    <string name="theme_variant_mystic_night_desc">Infinite night sky and stardust gold (Dark)</string>
+    <string name="theme_variant_moonlight_desc">Frost paper and royal ink navy (Light)</string>
+    <string name="theme_variant_classic_tarot_desc">Vintage parchment and classic tarot ink (Light)</string>
+    <string name="theme_variant_celestial_aurora_desc">Twilight indigo and ethereal cosmic aura (Dark)</string>
+    <string name="action_theme_button_desc">Switch interface theme</string>
+</resources>

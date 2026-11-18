@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- D10, DI-03: tên 4 theme F14 (mặc định & fallback tiếng Việt, C19). -->
+<resources>
+    <string name="theme_variant_mystic_night">Đêm huyền bí</string>
+    <string name="theme_variant_moonlight">Ánh trăng</string>
+    <string name="theme_variant_classic_tarot">Tarot cổ điển</string>
+    <string name="theme_variant_celestial_aurora">Cực quang</string>
+
+    <!-- Theme picker dialog (F14 & DI-03) -->
+    <string name="settings_theme_title">Chủ đề ma thuật</string>
+    <string name="settings_theme_hint">Chọn 1 trong 4 phong cách huyền bí của Taroshimaya:</string>
+    <string name="theme_option_system">Theo thiết bị</string>
+    <string name="theme_option_system_desc">Tự động đồng bộ theo chế độ sáng hoặc tối của máy</string>
+    <string name="theme_variant_mystic_night_desc">Bầu trời đêm vô tận và ánh vàng tinh tú (Tối)</string>
+    <string name="theme_variant_moonlight_desc">Mặt giấy sương mai và mực xanh hoàng gia (Sáng)</string>
+    <string name="theme_variant_classic_tarot_desc">Mực cổ điển và thư viện Tarot hoàng gia (Sáng)</string>
+    <string name="theme_variant_celestial_aurora_desc">Tím khói bóng đêm và sắc cực quang ma thuật (Tối)</string>
+    <string name="action_theme_button_desc">Đổi chủ đề giao diện</string>
+</resources>

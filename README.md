@@ -20,7 +20,7 @@ com/taroshimaya/app/
 ├── core/
 │   ├── auth/                        # Hợp đồng xác thực & phiên (UserRole, UserSession, AuthRepository, FakeAuthRepository)
 │   ├── data/                        # Công tắc DataSourceMode (FAKE / FIREBASE), C19 AppLanguagePreference & LanguageManager
-│   ├── designsystem/                # Theme, màu sắc, kiểu chữ Material 3 (DI-03 bổ sung tokens đầy đủ)
+│   ├── designsystem/                # D10 tokens (DI-03): 4 theme F14, màu, chữ, khoảng cách, shape, motion + TaroshimayaTheme
 │   ├── di/                          # AppContainer & DefaultAppContainer (DI thủ công tại điểm khởi tạo app)
 │   ├── navigation/                  # AppRoute & AppNavHost tập trung cho 5 gói
 │   └── ui/                          # UiState (Loading/Empty/Error/Success), DisclaimerBanner (S06), LanguagePickerDialog, ModulePlaceholderScreen
@@ -37,7 +37,7 @@ Bên trong mỗi gói `features/<gói>/` chia theo 3 lớp chuẩn `ui/`, `domai
 | Thư mục | Nội dung |
 |---|---|
 | `MainActivity.kt` | Điểm vào của app, nạp app shell Compose và điều hướng gốc. |
-| `core/designsystem/` | Design tokens và theme: màu, kiểu chữ, hình dạng (D10, DI-03). |
+| `core/designsystem/` | Design tokens và theme (D10, DI-03): 4 theme F14, màu Material 3 + màu mở rộng, kiểu chữ, khoảng cách, kích thước, shape, motion; truy cập qua `TaroshimayaTheme.*`. |
 | `core/ui/` | Composable dùng chung cho nhiều màn hình (UiStateHost, ModulePlaceholderScreen), gồm câu miễn trừ S06. |
 | `core/auth/` | Interface đăng nhập dùng chung giữa các gói, gồm `UserSession` và `AuthRepository` (D1). |
 | `core/data/` | Model lõi, `DataSourceMode` (FAKE / FIREBASE) và quản lý song ngữ `LanguageManager`. |
@@ -63,6 +63,30 @@ Khi nối màn hình Reader trong `features/reader_community`, `ReaderList` phá
   - Mặc định **Tiếng Việt** (đồng thời là fallback khi máy dùng ngôn ngữ khác Việt/Anh) tại `app/src/main/res/values/strings.xml`.
   - **Tiếng Anh** tại `app/src/main/res/values-en/strings.xml`.
   - Khai báo `android:localeConfig="@xml/locales_config"` + `AppLocalesMetadataHolderService` (`autoStoreLocales = true`). Trong Cài đặt / app shell hỗ trợ 3 lựa chọn: `Theo thiết bị` / `Tiếng Việt` / `English`. Mọi chữ giao diện (kể cả Loading/Empty/Error và miễn trừ `S06`) phải dùng `stringResource(...)`.
+
+### Design tokens (D10, DI-03)
+
+`TaroshimayaTheme { ... }` đã bọc toàn bộ app một lần ở `TaroshimayaApp`; màn hình trong các gói **không bọc lại** (chỉ bọc trong `@Preview` và test) và lấy giá trị qua object `TaroshimayaTheme`, **không đặt cứng màu, cỡ chữ hay `dp`** (G02, G08, T12):
+
+| Token | Truy cập | Ví dụ |
+|---|---|---|
+| Màu Material 3 | `TaroshimayaTheme.colors` | `colors.primary`, `colors.onSurface`, `colors.surfaceContainer` |
+| Màu mở rộng | `TaroshimayaTheme.extendedColors` | `cardBack`, `cardFace`, `cardInk` (chữ trên mặt lá bài), `cardArt` (hình trên mặt lá bài), `glow` (màu ánh sáng), `nebula` (màu tinh vân), `elementFire`, `success`, `warning`, `chartColor(i)`, `backgroundBrush` |
+| Kiểu chữ | `TaroshimayaTheme.typography`, `TaroshimayaTheme.eyebrow` | Tiêu đề (`display*`, `headline*`, `titleLarge`) dùng **Fraunces** (display 400, headline và titleLarge 600); chữ chức năng (nút, chip, ô nhập, mô tả, nhãn) dùng **Be Vietnam Pro**. `eyebrow` là nhãn mục nhỏ viết HOA giãn chữ, người gọi tự `uppercase()` |
+| Khoảng cách | `TaroshimayaTheme.spacing` | `xs 4`, `sm 8`, `md 12`, `lg 16`, `xl 24`, `xxl 32`; `screenHorizontal`, `cardPadding`, `sectionGap` |
+| Kích thước | `TaroshimayaTheme.sizing` | `minTouchTarget 48`, `iconMedium`, `tarotCardMedium`, `tarotCardAspectRatio` |
+| Shape | `TaroshimayaTheme.shapes` / `.taroShapes` | `shapes.medium`, `taroShapes.tarotCard`, `taroShapes.pill` |
+| Elevation | `TaroshimayaTheme.elevation` | `level1` … `level5` |
+| Motion | `TaroshimayaTheme.motion` | `durationPress 120`, `Short 150`, `Medium 220`, `Long 300`, `easingOut` (vào/ra), `easingInOut` (di chuyển trên màn hình), `pressScale 0.97`, `staggerDelay 50`; khi người dùng tắt hiệu ứng thì Compose kết thúc mọi animation tức thì (kể cả fade); `TaroMotion.Reduced` bỏ scale khi nhấn/xuất hiện và stagger để không bị giật |
+
+| Nền trời đêm | `TaroBackground { ... }` | Đã đặt **một lần ở gốc app** (`TaroshimayaApp`), Scaffold và thanh trên trong suốt. Các gói **không tự thêm** nền; màn hình để nền trong suốt là thấy |
+| Viền phát sáng | `Modifier.taroGlow(enabled, shape)` | Lá bài đang chọn: quầng sáng `glow` và viền `cardBorder`, mặc định theo `taroShapes.tarotCard`. Chỉ vẽ, không tự chuyển động; hiệu ứng mờ dần hay nâng lá bài làm ở DI-06 |
+
+Font nhúng trong `res/font`, chạy offline. Cả Fraunces và Be Vietnam Pro đều theo giấy phép SIL OFL 1.1, được dùng miễn phí trong app (giấy phép nằm ở `assets/licenses/`). Đổi font chỉ cần thay file trong `res/font` và `Type.kt`.
+
+Quy tắc chữ: không nối từ bằng dấu chấm giữa (·) hay gạch dài (—) trong chữ giao diện; viết thành câu hoặc tách dòng.
+
+4 theme (`TaroThemeVariant`): **Mystic Night** (tối, mặc định khi máy bật dark mode; nền xanh coban, sao trắng băng, ánh cyan, tinh vân tím), **Moonlight** (sáng, mặc định khi máy ở light mode; theo video giới thiệu: nền trắng sương, xanh hoàng gia, san hô), **Classic Tarot** (sáng; kem, đỏ thẫm, xanh lam), **Celestial Aurora** (tối; theo ảnh widget: tím chàm, ánh oải hương, nét vàng). Lưu lựa chọn bằng `storageKey`, khôi phục bằng `TaroThemeVariant.fromStorageKey(...)`; bộ chuyển theme trong app làm ở DI-14. Xem trước cả 4 theme trong `core/designsystem/DesignSystemCatalog.kt` (Android Studio Preview). Mọi cặp chữ/nền đạt WCAG AA (≥ 4.5:1), được kiểm tra tự động trong `DesignTokensTest`.
 
 ---
 
