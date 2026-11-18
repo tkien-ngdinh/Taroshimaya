@@ -40,4 +40,7 @@ interface SessionReadingRepository {
 
     /** Toggle favorite bookmark (F11 - Diệp) */
     suspend fun toggleFavorite(readingId: String, isFavorite: Boolean): Result<Unit>
+
+    /** Soft-delete a reading session by setting isDeleted = true and deletedAtUtcIso (F09, F11 - Diệp) */
+    suspend fun deleteReading(readingId: String): Result<Unit>
 }

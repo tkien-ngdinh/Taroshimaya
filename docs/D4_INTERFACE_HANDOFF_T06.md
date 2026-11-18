@@ -48,12 +48,14 @@ interface SessionReadingRepository {
         accuracyRating: Int?
     ): Result<Unit>
     suspend fun toggleFavorite(readingId: String, isFavorite: Boolean): Result<Unit>
+    suspend fun deleteReading(readingId: String): Result<Unit>
 }
 
 interface DailyDrawRepository {
     suspend fun getTodayDailyDraw(userId: String, dateLocalKey: String): Result<DailyDraw?>
     fun getTodayDailyDrawStream(userId: String, dateLocalKey: String): Flow<DailyDraw?>
     suspend fun saveDailyDraw(dailyDraw: DailyDraw): Result<Unit>
+    suspend fun getDailyDrawsHistory(userId: String, limit: Int = 30): Result<List<DailyDraw>>
 }
 ```
 
@@ -77,10 +79,19 @@ sessionReadingRepository.updateReadingReflection(
     accuracyRating = 5
 )
 
-// 3. Diệp lấy lá bài hôm nay hiển thị lên Glance Widget (F24)
+// 3. Diệp xóa mềm phiên trải bài / ghi chú nhật ký (F09, F11)
+sessionReadingRepository.deleteReading(readingId = "reading_mock_002_career")
+
+// 4. Diệp lấy lá bài hôm nay hiển thị lên Glance Widget (F24)
 val todayDraw = dailyDrawRepository.getTodayDailyDraw(
     userId = currentUserId,
     dateLocalKey = "2026-11-17"
+).getOrNull()
+
+// 5. Diệp lấy lịch sử rút bài 30 ngày gần nhất cho Thống kê & Streak (F12, F09)
+val dailyHistory = dailyDrawRepository.getDailyDrawsHistory(
+    userId = currentUserId,
+    limit = 30
 ).getOrNull()
 ```
 
@@ -89,6 +100,7 @@ val todayDraw = dailyDrawRepository.getTodayDailyDraw(
 | :---: | :--- | :--- | :---: | :---: |
 | 17/11/2026 | `feat/KI-05-d4-readings-daily-draws-schema` | Bàn giao Hợp đồng D4, Schema T07, 3 phiên mẫu JSON và Fake Repositories | Không (Bản ban đầu) | Kiên |
 | 17/11/2026 | `feat/KI-05-d4-readings-daily-draws-schema` | Đồng bộ mock `userId` (`fake-user-001`), `deckId` (`rider_waite`) và `cardId` theo hợp đồng D1 (`UY-06`) & D2 (`UY-07`) | Không | Kiên |
+| 18/11/2026 | `feat/KI-05-d4-readings-daily-draws-schema` | Bổ sung `deleteReading` (F09/F11), `getDailyDrawsHistory` (F12/F09) và timestamp UTC động (`Instant.now()`) theo review DI-07 của Diệp | Không | Kiên |
 
 ## 7. Xác nhận từ bên dùng (Sign-off):
 - Giao cho Diệp nghiệm thu tích hợp tại task `DI-07` (*Xác nhận D4 đủ cho F09, F11, F12*).

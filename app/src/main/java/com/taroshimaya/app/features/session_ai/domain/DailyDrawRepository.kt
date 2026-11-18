@@ -14,4 +14,7 @@ interface DailyDrawRepository {
 
     /** Save today's daily draw */
     suspend fun saveDailyDraw(dailyDraw: DailyDraw): Result<Unit>
+
+    /** Get past daily draws ordered by dateLocalKey descending for statistics & history (F12, F09 - Diệp) */
+    suspend fun getDailyDrawsHistory(userId: String, limit: Int = 30): Result<List<DailyDraw>>
 }

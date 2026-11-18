@@ -51,18 +51,26 @@ class FakeDailyDrawRepository : DailyDrawRepository {
 
     override suspend fun getTodayDailyDraw(userId: String, dateLocalKey: String): Result<DailyDraw?> {
         val deterministicKey = "${userId}_$dateLocalKey"
-        val draw = dailyDrawsMap[deterministicKey]
+        val draw = dailyDrawsMap[deterministicKey]?.takeIf { !it.isDeleted }
         return Result.success(draw)
     }
 
     override fun getTodayDailyDrawStream(userId: String, dateLocalKey: String): Flow<DailyDraw?> {
         val deterministicKey = "${userId}_$dateLocalKey"
-        return stateFlow.map { it[deterministicKey] }
+        return stateFlow.map { map -> map[deterministicKey]?.takeIf { !it.isDeleted } }
     }
 
     override suspend fun saveDailyDraw(dailyDraw: DailyDraw): Result<Unit> {
         dailyDrawsMap[dailyDraw.id] = dailyDraw
         stateFlow.value = dailyDrawsMap.toMap()
         return Result.success(Unit)
+    }
+
+    override suspend fun getDailyDrawsHistory(userId: String, limit: Int): Result<List<DailyDraw>> {
+        val history = dailyDrawsMap.values
+            .filter { it.userId == userId && !it.isDeleted }
+            .sortedByDescending { it.dateLocalKey }
+            .take(limit.coerceAtLeast(0))
+        return Result.success(history)
     }
 }

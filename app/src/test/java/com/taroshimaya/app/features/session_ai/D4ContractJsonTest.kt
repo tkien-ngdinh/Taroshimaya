@@ -5,15 +5,18 @@ import com.taroshimaya.app.features.session_ai.data.FakeDailyDrawRepository
 import com.taroshimaya.app.features.session_ai.data.FakeSessionReadingRepository
 import com.taroshimaya.app.features.session_ai.domain.ArcanaType
 import com.taroshimaya.app.features.session_ai.domain.CardOrientation
+import com.taroshimaya.app.features.session_ai.domain.DailyDraw
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import java.time.Instant
 
 class D4ContractJsonTest {
 
@@ -82,8 +85,9 @@ class D4ContractJsonTest {
     }
 
     @Test
-    fun testUpdateReflection_updatesNotesAndAccuracy() = runTest {
+    fun testUpdateReflection_updatesNotesAndAccuracyWithDynamicTimestamp() = runTest {
         val readingId = "reading_mock_002_career"
+        val before = Instant.now()
 
         val updateResult = readingRepository.updateReadingReflection(
             readingId = readingId,
@@ -92,6 +96,7 @@ class D4ContractJsonTest {
             moodTag = "Tự tin",
             accuracyRating = 4,
         )
+        val after = Instant.now()
         assertTrue(updateResult.isSuccess)
 
         val updated = readingRepository.getReadingById(readingId).getOrThrow()
@@ -100,18 +105,72 @@ class D4ContractJsonTest {
         assertEquals("Tự tin", updated.moodTag)
         assertEquals(4, updated.accuracyRating)
         assertNotNull(updated.ratedAtUtcIso)
+        assertNotEquals("2026-11-17T14:00:00Z", updated.updatedAtUtcIso)
+        assertNotEquals("2026-11-17T14:00:00Z", updated.ratedAtUtcIso)
+
+        val updatedInstant = Instant.parse(updated.updatedAtUtcIso)
+        val ratedInstant = Instant.parse(updated.ratedAtUtcIso)
+        assertFalse(updatedInstant.isBefore(before))
+        assertFalse(updatedInstant.isAfter(after))
+        assertEquals(updatedInstant, ratedInstant)
     }
 
     @Test
-    fun testToggleFavorite() = runTest {
+    fun testToggleFavorite_updatesFlagAndDynamicTimestamp() = runTest {
         val readingId = "reading_mock_002_career"
         assertFalse(readingRepository.getReadingById(readingId).getOrThrow().isFavorite)
 
+        val before = Instant.now()
         readingRepository.toggleFavorite(readingId, isFavorite = true)
-        assertTrue(readingRepository.getReadingById(readingId).getOrThrow().isFavorite)
+        val after = Instant.now()
+
+        val toggled = readingRepository.getReadingById(readingId).getOrThrow()
+        assertTrue(toggled.isFavorite)
+        assertNotEquals("2026-11-17T14:00:00Z", toggled.updatedAtUtcIso)
+        val updatedInstant = Instant.parse(toggled.updatedAtUtcIso)
+        assertFalse(updatedInstant.isBefore(before))
+        assertFalse(updatedInstant.isAfter(after))
 
         readingRepository.toggleFavorite(readingId, isFavorite = false)
         assertFalse(readingRepository.getReadingById(readingId).getOrThrow().isFavorite)
+    }
+
+    @Test
+    fun testDeleteReading_softDeletesAndExcludesFromQueriesAndStream() = runTest {
+        val userId = "fake-user-001"
+        val readingId = "reading_mock_002_career"
+
+        val deleteResult = readingRepository.deleteReading(readingId)
+        assertTrue(deleteResult.isSuccess)
+
+        // Cannot retrieve soft-deleted reading
+        assertTrue(readingRepository.getReadingById(readingId).isFailure)
+
+        // Excluded from recent readings, filtered queries, and live stream
+        val recent = readingRepository.getRecentReadings(userId, limit = 10).getOrThrow()
+        assertEquals(2, recent.size)
+        assertTrue(recent.none { it.id == readingId })
+
+        val filtered = readingRepository.getReadingsFiltered(userId, spreadId = "spread_career_3").getOrThrow()
+        assertTrue(filtered.isEmpty())
+
+        val streamList = readingRepository.getReadingsStream(userId).first()
+        assertEquals(2, streamList.size)
+        assertTrue(streamList.none { it.id == readingId })
+
+        // Re-deleting or mutating a soft-deleted reading returns failure
+        assertTrue(readingRepository.deleteReading(readingId).isFailure)
+        assertTrue(readingRepository.deleteReading("non_existent_id").isFailure)
+        assertTrue(readingRepository.toggleFavorite(readingId, isFavorite = true).isFailure)
+        assertTrue(
+            readingRepository.updateReadingReflection(
+                readingId = readingId,
+                userNotes = "Should fail",
+                tags = null,
+                moodTag = null,
+                accuracyRating = null,
+            ).isFailure,
+        )
     }
 
     @Test
@@ -141,6 +200,74 @@ class D4ContractJsonTest {
         val absentResult = dailyDrawRepository.getTodayDailyDraw(userId, "2026-11-18")
         assertTrue(absentResult.isSuccess)
         assertNull(absentResult.getOrThrow())
+    }
+
+    @Test
+    fun testDailyDrawRepository_getDailyDrawsHistory_sortedDescendingAndRespectsLimit() = runTest {
+        val userId = "fake-user-001"
+
+        // Initial seed has 1 draw (2026-11-17)
+        val initialHistory = dailyDrawRepository.getDailyDrawsHistory(userId).getOrThrow()
+        assertEquals(1, initialHistory.size)
+        assertEquals("2026-11-17", initialHistory[0].dateLocalKey)
+
+        // Save additional dates, another user's draw, and a soft-deleted draw
+        val extraDraws = listOf(
+            createSampleDailyDraw(userId = userId, dateKey = "2026-11-15", cardId = "major_00_fool", streak = 5),
+            createSampleDailyDraw(userId = userId, dateKey = "2026-11-18", cardId = "major_19_sun", streak = 8),
+            createSampleDailyDraw(userId = userId, dateKey = "2026-11-16", cardId = "major_01_magician", streak = 6),
+            createSampleDailyDraw(userId = "other-user-999", dateKey = "2026-11-18", cardId = "major_06_lovers", streak = 1),
+            createSampleDailyDraw(
+                userId = userId,
+                dateKey = "2026-11-14",
+                cardId = "major_02_high_priestess",
+                streak = 4,
+                isDeleted = true,
+            ),
+        )
+        for (draw in extraDraws) {
+            assertTrue(dailyDrawRepository.saveDailyDraw(draw).isSuccess)
+        }
+
+        val fullHistory = dailyDrawRepository.getDailyDrawsHistory(userId, limit = 30).getOrThrow()
+        assertEquals(
+            listOf("2026-11-18", "2026-11-17", "2026-11-16", "2026-11-15"),
+            fullHistory.map { it.dateLocalKey },
+        )
+
+        val limitedHistory = dailyDrawRepository.getDailyDrawsHistory(userId, limit = 2).getOrThrow()
+        assertEquals(listOf("2026-11-18", "2026-11-17"), limitedHistory.map { it.dateLocalKey })
+    }
+
+    private fun createSampleDailyDraw(
+        userId: String,
+        dateKey: String,
+        cardId: String,
+        streak: Int,
+        isDeleted: Boolean = false,
+    ): DailyDraw {
+        return DailyDraw(
+            id = "${userId}_$dateKey",
+            userId = userId,
+            dateLocalKey = dateKey,
+            deckId = "rider_waite",
+            cardId = cardId,
+            cardNameVi = "Lá mẫu $dateKey",
+            cardNameEn = "Sample $dateKey",
+            arcanaType = ArcanaType.MAJOR,
+            suit = null,
+            isReversed = false,
+            orientation = CardOrientation.UPRIGHT,
+            dailyMessageVi = "Thông điệp ngày $dateKey",
+            dailyMessageEn = "Daily message $dateKey",
+            streakCount = streak,
+            coinReward = 10,
+            drawnAtUtcIso = "${dateKey}T01:30:00Z",
+            createdAtUtcIso = "${dateKey}T01:30:00Z",
+            updatedAtUtcIso = "${dateKey}T01:30:00Z",
+            isDeleted = isDeleted,
+            deletedAtUtcIso = if (isDeleted) "${dateKey}T02:00:00Z" else null,
+        )
     }
 
     @Test

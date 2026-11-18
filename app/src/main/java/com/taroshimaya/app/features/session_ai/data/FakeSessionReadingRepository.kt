@@ -1,5 +1,7 @@
 package com.taroshimaya.app.features.session_ai.data
 
+import android.annotation.SuppressLint
+import android.os.Build
 import com.taroshimaya.app.features.session_ai.domain.AiInterpretation
 import com.taroshimaya.app.features.session_ai.domain.ArcanaType
 import com.taroshimaya.app.features.session_ai.domain.CardInterpretation
@@ -10,8 +12,12 @@ import com.taroshimaya.app.features.session_ai.domain.SessionReadingRepository
 import com.taroshimaya.app.features.session_ai.domain.TarotReading
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -308,6 +314,18 @@ class FakeSessionReadingRepository : SessionReadingRepository {
         return Result.success(reading.id)
     }
 
+    @SuppressLint("NewApi")
+    private fun currentUtcIsoTimestamp(): String {
+        // SDK_INT == 0 in local JVM unit tests (JDK 11+ always includes java.time.Instant).
+        return if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Instant.now().toString()
+        } else {
+            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }.format(Date())
+        }
+    }
+
     override suspend fun updateReadingReflection(
         readingId: String,
         userNotes: String?,
@@ -316,15 +334,18 @@ class FakeSessionReadingRepository : SessionReadingRepository {
         accuracyRating: Int?,
     ): Result<Unit> {
         val existing = readingsMap[readingId]
-            ?: return Result.failure(NoSuchElementException("Reading '$readingId' not found"))
+        if (existing == null || existing.isDeleted) {
+            return Result.failure(NoSuchElementException("Reading '$readingId' not found or deleted"))
+        }
 
+        val nowUtcIso = currentUtcIsoTimestamp()
         val updated = existing.copy(
             userNotes = userNotes ?: existing.userNotes,
             tags = tags ?: existing.tags,
             moodTag = moodTag ?: existing.moodTag,
             accuracyRating = accuracyRating ?: existing.accuracyRating,
-            ratedAtUtcIso = if (accuracyRating != null) "2026-11-17T14:00:00Z" else existing.ratedAtUtcIso,
-            updatedAtUtcIso = "2026-11-17T14:00:00Z",
+            ratedAtUtcIso = if (accuracyRating != null) nowUtcIso else existing.ratedAtUtcIso,
+            updatedAtUtcIso = nowUtcIso,
         )
         readingsMap[readingId] = updated
         syncStateFlow()
@@ -333,11 +354,29 @@ class FakeSessionReadingRepository : SessionReadingRepository {
 
     override suspend fun toggleFavorite(readingId: String, isFavorite: Boolean): Result<Unit> {
         val existing = readingsMap[readingId]
-            ?: return Result.failure(NoSuchElementException("Reading '$readingId' not found"))
+        if (existing == null || existing.isDeleted) {
+            return Result.failure(NoSuchElementException("Reading '$readingId' not found or deleted"))
+        }
 
         readingsMap[readingId] = existing.copy(
             isFavorite = isFavorite,
-            updatedAtUtcIso = "2026-11-17T14:00:00Z",
+            updatedAtUtcIso = currentUtcIsoTimestamp(),
+        )
+        syncStateFlow()
+        return Result.success(Unit)
+    }
+
+    override suspend fun deleteReading(readingId: String): Result<Unit> {
+        val existing = readingsMap[readingId]
+        if (existing == null || existing.isDeleted) {
+            return Result.failure(NoSuchElementException("Reading '$readingId' not found or already deleted"))
+        }
+
+        val nowUtcIso = currentUtcIsoTimestamp()
+        readingsMap[readingId] = existing.copy(
+            isDeleted = true,
+            deletedAtUtcIso = nowUtcIso,
+            updatedAtUtcIso = nowUtcIso,
         )
         syncStateFlow()
         return Result.success(Unit)
